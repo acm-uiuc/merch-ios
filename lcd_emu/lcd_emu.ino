@@ -53,6 +53,7 @@ typedef enum {
   _1F_28_61,
   _1F_28_66,
   _1F_28_67,
+  _1F_28_77,
   _1B,
   SET_POS_X_L,
   SET_POS_X_H,
@@ -69,10 +70,47 @@ typedef enum {
   FONT_MAGNIFIED_DISPLAY_1,
   FONT_MAGNIFIED_DISPLAY_2,
   SPECIFY_INTERNATIONAL_FONT,
+  CLEAR_SCREEN,
+  USE_MULTIBYTE_CHARS,
+  SET_MULTIBYTE_CHARSET,
+  DEFINE_CUSTOM_CHAR1,
+  DEFINE_CUSTOM_CHAR2,
+  DEFINE_CUSTOM_CHAR3,
+  DEFINE_CUSTOM_CHAR4,
+  DEFINE_CUSTOM_CHAR5,
+  SET_COMPOSITION_MODE,
+  SET_SCREEN_BRIGHTNESS,
+  TIME_WAIT,
+  SCROLL_SCREEN1,
+  SCROLL_SCREEN2,
+  SCROLL_SCREEN3,
+  SCROLL_SCREEN4,
+  SCROLL_SCREEN5,
+  BLINK_SCREEN1,
+  BLINK_SCREEN2,
+  BLINK_SCREEN3,
+  BLINK_SCREEN4,
+  SET_FONT_STYLE,
+  SET_FONT_SIZE1,
+  SET_FONT_SIZE2,
+  SET_FONT_SIZE_TALL,
+  SELECT_WINDOW0,
+  SELECT_WINDOW1,
+  SELECT_WINDOW2,
+  SELECT_WINDOW3,
+  SELECT_WINDOW4,
+  DEFINE_WINDOW0,
+  DEFINE_WINDOW1,
+  DEFINE_WINDOW_X_L,
+  DEFINE_WINDOW_X_H,
+  DEFINE_WINDOW_Y_L,
+  DEFINE_WINDOW_Y_H,
+  DEFINE_WINDOW_WIDTH_L,
+  DEFINE_WINDOW_WIDTH_H,
+  DEFINE_WINDOW_HEIGHT_L,
+  DEFINE_WINDOW_HEIGHT_H,
+  JOIN_SCREENS,
 } state_t;
-
-#define NUM_STATES 24
-
 
 typedef state_t transition_func_t(char code);
 
@@ -82,6 +120,7 @@ state_t do_1F_28(char code);
 state_t do_1F_28_61(char code);
 state_t do_1F_28_66(char code);
 state_t do_1F_28_67(char code);
+state_t do_1F_28_77(char code);
 state_t do_1B(char code);
 state_t do_SET_POS_X_L(char code);
 state_t do_SET_POS_X_H(char code);
@@ -98,6 +137,47 @@ state_t do_BIT_IMAGE_DISPLAY_GROUP_2(char code);
 state_t do_FONT_MAGNIFIED_DISPLAY_1(char code);
 state_t do_FONT_MAGNIFIED_DISPLAY_2(char code);
 state_t do_SPECIFY_INTERNATIONAL_FONT(char code);
+state_t do_CLEAR_SCREEN(char code);
+state_t do_USE_MULTIBYTE_CHARS(char code);
+state_t do_SET_MULTIBYTE_CHARSET(char code);
+state_t do_DEFINE_CUSTOM_CHAR_1(char code);
+state_t do_DEFINE_CUSTOM_CHAR_2(char code);
+state_t do_DEFINE_CUSTOM_CHAR_3(char code);
+state_t do_DEFINE_CUSTOM_CHAR_4(char code);
+state_t do_DEFINE_CUSTOM_CHAR_5(char code);
+state_t do_SET_COMPOSITION_MODE(char code);
+state_t do_SET_SCREEN_BRIGHTNESS(char code);
+state_t do_TIME_WAIT(char code);
+state_t do_SCROLL_SCREEN1(char code);
+state_t do_SCROLL_SCREEN2(char code);
+state_t do_SCROLL_SCREEN3(char code);
+state_t do_SCROLL_SCREEN4(char code);
+state_t do_SCROLL_SCREEN5(char code);
+state_t do_BLINK_SCREEN1(char code);
+state_t do_BLINK_SCREEN2(char code);
+state_t do_BLINK_SCREEN3(char code);
+state_t do_BLINK_SCREEN4(char code);
+state_t do_SET_FONT_STYLE(char code);
+state_t do_SET_FONT_SIZE1(char code);
+state_t do_SET_FONT_SIZE2(char code);
+state_t do_SET_FONT_SIZE_TALL(char code);
+state_t do_SELECT_WINDOW0(char code);
+state_t do_SELECT_WINDOW1(char code);
+state_t do_SELECT_WINDOW2(char code);
+state_t do_SELECT_WINDOW3(char code);
+state_t do_SELECT_WINDOW4(char code);
+state_t do_DEFINE_WINDOW0(char code);
+state_t do_DEFINE_WINDOW1(char code);
+state_t do_DEFINE_WINDOW_X_L(char code);
+state_t do_DEFINE_WINDOW_X_H(char code);
+state_t do_DEFINE_WINDOW_Y_L(char code);
+state_t do_DEFINE_WINDOW_Y_H(char code);
+state_t do_DEFINE_WINDOW_WIDTH_L(char code);
+state_t do_DEFINE_WINDOW_WIDTH_H(char code);
+state_t do_DEFINE_WINDOW_HEIGHT_L(char code);
+state_t do_DEFINE_WINDOW_HEIGHT_H(char code);
+state_t do_JOIN_SCREENS(char code);
+
 
 transition_func_t * const transition_table[] = {
   do_WAIT,
@@ -106,6 +186,7 @@ transition_func_t * const transition_table[] = {
   do_1F_28_61,
   do_1F_28_66,
   do_1F_28_67,
+  do_1F_28_77,
   do_1B,
   do_SET_POS_X_L,
   do_SET_POS_X_H,
@@ -122,6 +203,40 @@ transition_func_t * const transition_table[] = {
   do_FONT_MAGNIFIED_DISPLAY_1,
   do_FONT_MAGNIFIED_DISPLAY_2,
   do_SPECIFY_INTERNATIONAL_FONT,
+  do_CLEAR_SCREEN,
+  do_USE_MULTIBYTE_CHARS,
+  do_SET_MULTIBYTE_CHARSET,
+  do_SET_COMPOSITION_MODE,
+  do_SET_SCREEN_BRIGHTNESS,
+  do_SCROLL_SCREEN1,
+  do_SCROLL_SCREEN2,
+  do_SCROLL_SCREEN3,
+  do_SCROLL_SCREEN4,
+  do_SCROLL_SCREEN5,
+  do_BLINK_SCREEN1,
+  do_BLINK_SCREEN2,
+  do_BLINK_SCREEN3,
+  do_BLINK_SCREEN4,
+  do_SET_FONT_STYLE,
+  do_SET_FONT_SIZE1,
+  do_SET_FONT_SIZE2,
+  do_SET_FONT_SIZE_TALL,
+  do_SELECT_WINDOW0,
+  do_SELECT_WINDOW1,
+  do_SELECT_WINDOW2,
+  do_SELECT_WINDOW3,
+  do_SELECT_WINDOW4,
+  do_DEFINE_WINDOW0,
+  do_DEFINE_WINDOW1,
+  do_DEFINE_WINDOW_X_L,
+  do_DEFINE_WINDOW_X_H,
+  do_DEFINE_WINDOW_Y_L,
+  do_DEFINE_WINDOW_Y_H,
+  do_DEFINE_WINDOW_WIDTH_L,
+  do_DEFINE_WINDOW_WIDTH_H,
+  do_DEFINE_WINDOW_HEIGHT_L,
+  do_DEFINE_WINDOW_HEIGHT_H,
+  do_JOIN_SCREENS,
 };
 
 state_t state = WAIT;
@@ -151,6 +266,8 @@ state_t do_WAIT(char code) {
       return _1F;
     case 0x1B:
       return _1B;
+    case 0x0C:
+      return CLEAR_SCREEN;
   }
   // Handle the character
   data[cursor.y][cursor.x] = code;
@@ -160,10 +277,26 @@ state_t do_WAIT(char code) {
 
 state_t do_1F(char code) {
   switch(code) {
+    case 0x10:
+      return SELECT_WINDOW0;
+    case 0x11:
+      return SELECT_WINDOW1;
+    case 0x12:
+      return SELECT_WINDOW2;
+    case 0x13:
+      return SELECT_WINDOW3;
+    case 0x14:
+      return SELECT_WINDOW4;
+
     case 0x1F:
       return _1F;
     case 0x24:
       return SET_POS_X_L;
+    case 0x77:
+      return SET_COMPOSITION_MODE;
+    case 0x58:
+      return SET_SCREEN_BRIGHTNESS;
+    
   }
   // Unknown sequence
   return WAIT;
@@ -176,14 +309,30 @@ state_t do_1F_28(char code) {
       return _1F_28_66;
     case 0x67:
       return _1F_28_67;
+    case 0x77:
+      return _1F_28_77;
   }
   // Unknown sequence
   return WAIT;
+}
+state_t do_1F_28_77(char code) {
+  switch(code) {
+    case 0x02:
+      return DEFINE_WINDOW0;
+    case 0x10:
+      return JOIN_SCREENS;
+  }
 }
 state_t do_1F_28_61(char code) {
   switch(code) {
     case 0x40:
       return SCREENSAVER;
+    case 0x01:
+      return TIME_WAIT;
+    case 0x10:
+      return SCROLL_SCREEN1;
+    case 0x11:
+      return BLINK_SCREEN_1;
   }
   return WAIT;
 }
@@ -196,9 +345,25 @@ state_t do_1F_28_66(char code) {
 }
 state_t do_1F_28_67(char code) {
   switch(code) {
+    case 0x01:
+      return SET_FONT_SIZE_TALL;
+    case 0x02:
+      return USE_MULTIBYTE_CHARS;
+    case 0x03:
+      return SET_FONT_STYLE;
+    case 0x0F:
+      return SET_MULTIBYTE_CHARSET;
     case 0x40:
       return FONT_MAGNIFIED_DISPLAY_1;
   }
+  return WAIT;
+}
+state_t do_USE_MULTIBYTE_CHARS(char code) {
+  // bool enable = code;
+  return WAIT;
+}
+state_t do_SET_MULTIBYTE_CHARSET(char code) {
+  // code = the charset code
   return WAIT;
 }
 state_t do_1B(char code) {
@@ -238,6 +403,9 @@ state_t do_SET_BRIGHTNESS(char code) {
 }
 state_t do_SCREENSAVER(char code) {
   screensaver = code;
+  // 0 = display off
+  // 1 = display on
+  // otherwise I'm not sure
   return WAIT;
 }
 state_t do_DISPLAY_BLINK_1(char code) {
@@ -277,207 +445,131 @@ state_t do_SPECIFY_INTERNATIONAL_FONT(char code) {
   return WAIT;
 }
 
+state_t do_CLEAR_SCREEN(char code) {
+  return WAIT;
+}
+state_t do_DEFINE_CUSTOM_CHAR1(char code) {
+  return DEFINE_CUSTOM_CHAR2;
+}
+state_t do_DEFINE_CUSTOM_CHAR2(char code) {
+  return DEFINE_CUSTOM_CHAR3;
+}
+state_t do_DEFINE_CUSTOM_CHAR3(char code) {
+  return DEFINE_CUSTOM_CHAR4;
+}
+state_t do_DEFINE_CUSTOM_CHAR4(char code) {
+  return DEFINE_CUSTOM_CHAR5;
+}
+state_t do_DEFINE_CUSTOM_CHAR5(char code) {
+  return WAIT;
+}
+state_t do_SET_COMPOSITION_MODE(char code) {
+  return WAIT;
+}
+state_t do_SET_SCREEN_BRIGHTNESS(char code) {
+  return WAIT;
+}
+state_t do_TIME_WAIT(char code) {
+  return WAIT;
+}
+state_t do_SCROLL_SCREEN1(char code) {
+  return SCROLL_SCREEN2;
+}
+state_t do_SCROLL_SCREEN2(char code) {
+  return SCROLL_SCREEN3;
+}
+state_t do_SCROLL_SCREEN3(char code) {
+  return SCROLL_SCREEN4;
+}
+state_t do_SCROLL_SCREEN4(char code) {
+  return SCROLL_SCREEN5;
+}
+state_t do_SCROLL_SCREEN5(char code) {
+  return WAIT;
+}
+state_t do_BLINK_SCREEN1(char code) {
+  return BLINK_SCREEN2;
+}
+state_t do_BLINK_SCREEN2(char code) {
+  return BLINK_SCREEN3;
+}
+state_t do_BLINK_SCREEN3(char code) {
+  return BLINK_SCREEN4;
+}
+state_t do_BLINK_SCREEN4(char code) {
+  return WAIT;
+}
+state_t do_SET_FONT_STYLE(char code) {
+  return WAIT;
+}
+state_t do_SET_FONT_SIZE1(char code) {
+  return SET_FONT_SIZE2;
+}
+state_t do_SET_FONT_SIZE2(char code) {
+  return WAIT;
+}
+state_t do_SET_FONT_SIZE_TALL(char code) {
+  return WAIT;
+}
+state_t do_SELECT_WINDOW0(char code) {
+  return WAIT;
+}
+state_t do_SELECT_WINDOW1(char code) {
+  return WAIT;
+}
+state_t do_SELECT_WINDOW2(char code) {
+  return WAIT;
+}
+state_t do_SELECT_WINDOW3(char code) {
+  return WAIT;
+}
+state_t do_SELECT_WINDOW4(char code) {
+  return WAIT;
+}
+
+state_t do_DEFINE_WINDOW0(char code) {
+  return DEFINE_WINDOW1;
+}
+state_t do_DEFINE_WINDOW1(char code) {
+  return DEFINE_WINDOW_X_L;
+}
+state_t do_DEFINE_WINDOW_X_L(char code) {
+  return DEFINE_WINDOW_X_H;
+}
+state_t do_DEFINE_WINDOW_X_H(char code) {
+  return DEFINE_WINDOW_Y_L;
+}
+state_t do_DEFINE_WINDOW_Y_L(char code) {
+  return DEFINE_WINDOW_Y_H;
+}
+state_t do_DEFINE_WINDOW_Y_H(char code) {
+  return DEFINE_WINDOW_WIDTH_L;
+}
+state_t do_DEFINE_WINDOW_WIDTH_L(char code) {
+  return DEFINE_WINDOW_WIDTH_L;
+}
+state_t do_DEFINE_WINDOW_WIDTH_H(char code) {
+  return DEFINE_WINDOW_HEIGHT_L;
+}
+state_t do_DEFINE_WINDOW_HEIGHT_L(char code) {
+  return DEFINE_WINDOW_HEIGHT_H;
+}
+state_t do_DEFINE_WINDOW_HEIGHT_H(char code) {
+  return WAIT;
+}
+state_t do_JOIN_SCREENS(char code ) {
+  // 0 = separate screens
+  // 1 = join screens
+  return WAIT;
+}
 
 
-/*void handleChar(char code) {
-  Serial.print(code & 0xFF, HEX);
-  Serial.print(' ');
-  Serial.print(state);
-  Serial.print('\n');
-  switch(state) {
-    case WAIT:
-      switch(code) {
-        case 0x1F:
-          state = _1F;
-          break;
-        case 0x1B:
-          state = _1B;
-          break;
-        default:
-          // Write the character to display
-          data[cursor.y][cursor.x] = code;
-          cursor.x++;
-          Serial.print(code);
-          Serial.print('\n');
-          Serial.println("Print ");
-          Serial.print(code);
-          Serial.print(" at (");
-          Serial.print(cursor.x);
-          Serial.print(", ");
-          Serial.print(cursor.y);
-          Serial.print(")\n");
-          break;
-      }
-      break;
-    case _1F:
-      switch(code) {
-        case 0x1F:
-          state = _1F;
-          break;
-        case 0x24:
-          state = SET_POS_X_L;
-          data[cursor.y][cursor.x] = '\0';
-          break;
-        case 0x02:
-          state = WAIT;
-          Serial.print("Vertical Scroll mode");
-          break;
-        case 0x03:
-          state = WAIT;
-          Serial.print("Horizontal Scroll mode");
-          break;
-        case 0x28:
-          state = _1F_28;
-          break;
-        case 0x58:
-          state = SET_BRIGHTNESS;
-          Serial.print("Set brightness ");
-          Serial.print(code);
-          Serial.print('\n');
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-      break;
-    case _1F_28:
-      switch(code) {
-        case 0x61:
-          state = _1F_28_61;
-          break;
-        case 0x66:
-          state = _1F_28_66;
-          break;
-        case 0x67:
-          state = _1F_28_67;
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-    case _1F_28_61:
-      switch(code) {
-        case 0x40:
-          // Screen saver
-          state = SCREENSAVER;
-          Serial.print("Screensaver mode");
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-      break;
-    case _1F_28_66:
-      switch(code) {
-        case 0x11:
-          state = BIT_IMAGE_DISPLAY_GROUP_1;
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-      break;
-    case _1F_28_67:
-      switch(code) {
-        case 0x40:
-          state = FONT_MAGNIFIED_DISPLAY_1;
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-      break;
-    case _1B:
-      switch(code) {
-        case 0x40:
-          // Do initialize display
-          do_reset();
-          state = WAIT;
-          break;
-        case 0x52:
-          state = SPECIFY_INTERNATIONAL_FONT;
-          break;
-        default:
-          state = WAIT;
-          break;
-      }
-      break;
-    case SPECIFY_INTERNATIONAL_FONT:
-      font = code;
-      state = WAIT;
-      break;
-    case SCREENSAVER:
-      screensaver = code;
-      state = WAIT;
-      break;
-    case SET_BRIGHTNESS:
-      brightness = code;
-      state = WAIT;
-      break;
-    case DISPLAY_BLINK_1:
-      blink_enable_reverse = code;
-      state = DISPLAY_BLINK_2;
-      break;
-    case DISPLAY_BLINK_2:
-      blink_ontime = code;
-      state = DISPLAY_BLINK_3;
-      break;
-    case DISPLAY_BLINK_3:
-      blink_ontime = code;
-      state = DISPLAY_BLINK_4;
-      break;
-    case DISPLAY_BLINK_4:
-      blink_times = code;
-      state = WAIT;
-      break;
-    case BIT_IMAGE_DISPLAY_GROUP_1:
-      display_group = (uint16_t)code & 0xFF;
-      state = BIT_IMAGE_DISPLAY_GROUP_2;
-      break;
-    case BIT_IMAGE_DISPLAY_GROUP_2:
-      display_group |= (uint16_t)code << 8;
-      state = WAIT;
-      break;
-    case FONT_MAGNIFIED_DISPLAY_1:
-      font_magnified_display_x = code;
-      state = FONT_MAGNIFIED_DISPLAY_2;
-      break;
-    case FONT_MAGNIFIED_DISPLAY_2:
-      font_magnified_display_y = code;
-      state = WAIT;
-      break;
 
-
-    case SET_POS_X_L:
-      cursor.x = 0;
-      cursor.x |= (uint16_t)code & 0xFF;
-      state = SET_POS_X_H;
-      break;
-    case SET_POS_X_H:
-      cursor.x |= (uint16_t)code << 8;
-      state = SET_POS_Y_L;
-      break;
-    case SET_POS_Y_L:
-      cursor.y = (uint16_t)code & 0xFF;
-      state = SET_POS_Y_H;
-      break;
-    case SET_POS_Y_H:
-      cursor.y |= (uint16_t)code << 8;
-      state = WAIT;
-      Serial.print(data[0]);
-      Serial.print("Moved cursor to (");
-      Serial.print(cursor.x);
-      Serial.print(", ");
-      Serial.print(cursor.y);
-      Serial.print(")\n");
-      break;
-  }
-}*/
 
 
 void handleChar(char code) {
   state = transition_table[(int)state](code);
-}
+} 
 
 void loop() {
     noInterrupts();
