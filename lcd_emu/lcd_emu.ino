@@ -110,6 +110,8 @@ typedef enum {
   DEFINE_WINDOW_HEIGHT_L,
   DEFINE_WINDOW_HEIGHT_H,
   JOIN_SCREENS,
+  CURSOR_ON,
+  CURSOR_OFF,
 } state_t;
 
 typedef state_t transition_func_t(char code);
@@ -177,7 +179,8 @@ state_t do_DEFINE_WINDOW_WIDTH_H(char code);
 state_t do_DEFINE_WINDOW_HEIGHT_L(char code);
 state_t do_DEFINE_WINDOW_HEIGHT_H(char code);
 state_t do_JOIN_SCREENS(char code);
-
+state_t do_CURSOR_ON(char code);
+state_t do_CURSOR_OFF(char code);
 
 transition_func_t * const transition_table[] = {
   do_WAIT,
@@ -237,6 +240,8 @@ transition_func_t * const transition_table[] = {
   do_DEFINE_WINDOW_HEIGHT_L,
   do_DEFINE_WINDOW_HEIGHT_H,
   do_JOIN_SCREENS,
+  do_CURSOR_ON,
+  do_CURSOR_OFF,
 };
 
 state_t state = WAIT;
@@ -255,6 +260,8 @@ char font_magnified_display_x = 0;
 char font_magnified_display_y = 0;
 
 char data[2][140] = {0};
+
+bool cursorOn; // I don't know what default value to set this as
 
 
 
@@ -287,7 +294,6 @@ state_t do_1F(char code) {
       return SELECT_WINDOW3;
     case 0x14:
       return SELECT_WINDOW4;
-
     case 0x1F:
       return _1F;
     case 0x24:
@@ -296,11 +302,24 @@ state_t do_1F(char code) {
       return SET_COMPOSITION_MODE;
     case 0x58:
       return SET_SCREEN_BRIGHTNESS;
-    
+    case 0x43:
+      return do_1F_43;
   }
   // Unknown sequence
   return WAIT;
 }
+
+state_t do_1F_43(char code) {
+  switch(code) {
+    case 0x01:
+      return do_CURSOR_ON;
+    case 0x00:
+      return do_CURSOR_OFF;
+  }
+  // Unknown sequence
+  return WAIT;
+}
+
 state_t do_1F_28(char code) {
   switch(code) {
     case 0x61:
@@ -563,6 +582,14 @@ state_t do_JOIN_SCREENS(char code ) {
   return WAIT;
 }
 
+state_t do_CURSOR_ON(char code) {
+  cursorOn = True;
+  return WAIT;
+}
+state_t do_CURSOR_OFF(char code) {
+  cursorOn = False;
+  return WAIT;
+}
 
 
 
