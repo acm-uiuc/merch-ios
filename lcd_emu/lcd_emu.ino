@@ -354,8 +354,7 @@ state_t do_1F_72(char code) {
 
 
 state_t do_1F_73(char code) {
-  // horizontal_speed = code
-  
+  horizontal_speed = code
   return WAIT;
 }
 
