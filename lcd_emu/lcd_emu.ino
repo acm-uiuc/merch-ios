@@ -4,6 +4,8 @@ const int RESET=3;
 const int SIGNAL=6;
 const int BUSY=7;
 
+#define DIM_Y 2
+#define DIM_X 140
 
 enum {
   PIN2Interrupt = 0,
@@ -57,8 +59,9 @@ typedef enum {
   _1F_28_66,
   _1F_28_67,
   _1F_28_77,
-  _1F_43,
   _1B,
+  _1B_3F,
+  _1B_74,
   SET_POS_X_L,
   SET_POS_X_H,
   SET_POS_Y_L,
@@ -74,7 +77,6 @@ typedef enum {
   FONT_MAGNIFIED_DISPLAY_1,
   FONT_MAGNIFIED_DISPLAY_2,
   SPECIFY_INTERNATIONAL_FONT,
-  CLEAR_SCREEN,
   USE_MULTIBYTE_CHARS,
   SET_MULTIBYTE_CHARSET,
   DEFINE_CUSTOM_CHAR1,
@@ -118,6 +120,7 @@ typedef enum {
   CURSOR_OFF,
   INVERT_ON,
   INVERT_OFF,
+  DELETE_CUSTOM_CHAR,
 } state_t;
 
 typedef state_t transition_func_t(char code);
@@ -132,8 +135,9 @@ state_t do_1F_28_61(char code);
 state_t do_1F_28_66(char code);
 state_t do_1F_28_67(char code);
 state_t do_1F_28_77(char code);
-state_t do_1F_43(char code);
 state_t do_1B(char code);
+state_t do_1B_3F(char code);
+state_t do_1B_74(char code);
 state_t do_SET_POS_X_L(char code);
 state_t do_SET_POS_X_H(char code);
 state_t do_SET_POS_Y_L(char code);
@@ -149,14 +153,13 @@ state_t do_BIT_IMAGE_DISPLAY_GROUP_2(char code);
 state_t do_FONT_MAGNIFIED_DISPLAY_1(char code);
 state_t do_FONT_MAGNIFIED_DISPLAY_2(char code);
 state_t do_SPECIFY_INTERNATIONAL_FONT(char code);
-state_t do_CLEAR_SCREEN(char code);
 state_t do_USE_MULTIBYTE_CHARS(char code);
 state_t do_SET_MULTIBYTE_CHARSET(char code);
-state_t do_DEFINE_CUSTOM_CHAR_1(char code);
-state_t do_DEFINE_CUSTOM_CHAR_2(char code);
-state_t do_DEFINE_CUSTOM_CHAR_3(char code);
-state_t do_DEFINE_CUSTOM_CHAR_4(char code);
-state_t do_DEFINE_CUSTOM_CHAR_5(char code);
+state_t do_DEFINE_CUSTOM_CHAR1(char code);
+state_t do_DEFINE_CUSTOM_CHAR2(char code);
+state_t do_DEFINE_CUSTOM_CHAR3(char code);
+state_t do_DEFINE_CUSTOM_CHAR4(char code);
+state_t do_DEFINE_CUSTOM_CHAR5(char code);
 state_t do_SET_COMPOSITION_MODE(char code);
 state_t do_SET_SCREEN_BRIGHTNESS(char code);
 state_t do_TIME_WAIT(char code);
@@ -193,6 +196,7 @@ state_t do_CURSOR_ON(char code);
 state_t do_CURSOR_OFF(char code);
 state_t do_INVERT_ON(char code);
 state_t do_INVERT_OFF(char code);
+state_t do_DELETE_CUSTOM_CHAR(char code);
 
 transition_func_t * const transition_table[] = {
   do_WAIT,
@@ -206,6 +210,8 @@ transition_func_t * const transition_table[] = {
   do_1F_28_67,
   do_1F_28_77,
   do_1B,
+  do_1B_3F,
+  do_1B_74,
   do_SET_POS_X_L,
   do_SET_POS_X_H,
   do_SET_POS_Y_L,
@@ -221,11 +227,16 @@ transition_func_t * const transition_table[] = {
   do_FONT_MAGNIFIED_DISPLAY_1,
   do_FONT_MAGNIFIED_DISPLAY_2,
   do_SPECIFY_INTERNATIONAL_FONT,
-  do_CLEAR_SCREEN,
   do_USE_MULTIBYTE_CHARS,
   do_SET_MULTIBYTE_CHARSET,
+  do_DEFINE_CUSTOM_CHAR1,
+  do_DEFINE_CUSTOM_CHAR2,
+  do_DEFINE_CUSTOM_CHAR3,
+  do_DEFINE_CUSTOM_CHAR4,
+  do_DEFINE_CUSTOM_CHAR5,
   do_SET_COMPOSITION_MODE,
   do_SET_SCREEN_BRIGHTNESS,
+  do_TIME_WAIT,
   do_SCROLL_SCREEN1,
   do_SCROLL_SCREEN2,
   do_SCROLL_SCREEN3,
@@ -259,6 +270,7 @@ transition_func_t * const transition_table[] = {
   do_CURSOR_OFF,
   do_INVERT_ON,
   do_INVERT_OFF,
+  do_DELETE_CUSTOM_CHAR,
 };
 
 state_t state = WAIT;
@@ -292,11 +304,57 @@ state_t do_WAIT(char code) {
     case 0x1B:
       return _1B;
     case 0x0C:
-      return CLEAR_SCREEN;
+      //clears the screen
+      Serial.print("Clear screen\n");
+      return WAIT;
   }
-  // Handle the character
-  data[cursor.y][cursor.x] = code;
-  cursor.x++;
+  switch(code) {
+    case 0x08:
+      cursor.x = cursor.x - 1;
+      if (cursor.x < 0) {
+        cursor.y--;
+        if (cursor.y < 0) {
+          cursor.y = 0;
+        }
+      }
+      break;
+    case 0x09:
+      cursor.x++;
+      if(cursor.x >= DIM_X) {
+        cursor.y++;
+        if(cursor.y >= DIM_Y) {
+          cursor.y = DIM_Y-1;
+        }
+      }
+      break;
+    case 0x0A:
+      cursor.y++;
+      if(cursor.y >= DIM_Y) {
+        cursor.y = DIM_Y - 1;
+      }
+      break;
+    case 0x0B:
+      cursor.x = 0;
+      cursor.y = 0;
+      break;
+    case 0x0C:
+      cursor.x = 0;
+      break;
+  }
+  if(code >= 0x20){
+    // Handle the character
+    data[cursor.y][cursor.x] = code;
+    cursor.x++;
+    if(cursor.x >= DIM_X) {
+      cursor.y++;
+      if(cursor.y >= DIM_Y) {
+        cursor.y = DIM_Y - 1;
+      }
+    }
+    Serial.print(code);
+    Serial.print('\n');
+  }  
+
   return WAIT;
 }
 
@@ -316,16 +374,19 @@ state_t do_1F(char code) {
       return _1F;
     case 0x24:
       return SET_POS_X_L;
+    case 0x28:
+      return _1F_28;
     case 0x77:
       return SET_COMPOSITION_MODE;
     case 0x58:
       return SET_SCREEN_BRIGHTNESS;
     case 0x43:
-      return do_1F_43;
+      return _1F_43;
     case 0x73:
-      return do_1F_73;
+      return _1F_73;
     case 0x72:
-      return do_1F_72;
+      return _1F_72;
+
   }
   // Unknown sequence
   return WAIT;
@@ -356,7 +417,7 @@ state_t do_1F_72(char code) {
 
 
 state_t do_1F_73(char code) {
-  horizontal_speed = code
+  horizontal_speed = code;
   return WAIT;
 }
 
@@ -391,7 +452,7 @@ state_t do_1F_28_61(char code) {
     case 0x10:
       return SCROLL_SCREEN1;
     case 0x11:
-      return BLINK_SCREEN_1;
+      return BLINK_SCREEN1;
   }
   return WAIT;
 }
@@ -427,18 +488,32 @@ state_t do_SET_MULTIBYTE_CHARSET(char code) {
 }
 state_t do_1B(char code) {
   switch(code) {
+    case 0x3F:
+      return _1B_3F;
     case 0x40:
       // Initialize display
-      do_reset();
+      Serial.print("Initializing\n");
       return WAIT;
     case 0x52:
       return SPECIFY_INTERNATIONAL_FONT;
+    case 0x74:
+      return _1B_74;
   }
+  return WAIT;
+}
+state_t do_1B_3F(char code) {
+  switch(code) {
+    case 0x01:
+      return DELETE_CUSTOM_CHAR;
+  }
+  return WAIT;
+}
+state_t do_1B_74(char code) {
+  //I DONT KNOW WHAT TO DO HERE. OOPS CAPS
   return WAIT;
 }
 state_t do_SET_POS_X_L(char code) {
   data[cursor.y][cursor.x] = '\0';
-  Serial.print(data[cursor.y]);
   cursor.x = 0;
   cursor.x |= (uint16_t)code & 0xFF;
   return SET_POS_X_H;
@@ -504,9 +579,6 @@ state_t do_SPECIFY_INTERNATIONAL_FONT(char code) {
   return WAIT;
 }
 
-state_t do_CLEAR_SCREEN(char code) {
-  return WAIT;
-}
 state_t do_DEFINE_CUSTOM_CHAR1(char code) {
   return DEFINE_CUSTOM_CHAR2;
 }
@@ -616,7 +688,7 @@ state_t do_DEFINE_WINDOW_HEIGHT_L(char code) {
 state_t do_DEFINE_WINDOW_HEIGHT_H(char code) {
   return WAIT;
 }
-state_t do_JOIN_SCREENS(char code ) {
+state_t do_JOIN_SCREENS(char code) {
   // 0 = separate screens
   // 1 = join screens
   return WAIT;
@@ -638,12 +710,20 @@ state_t do_INVERT_OFF(char code) {
   invert_on = 0;
   return WAIT;
 }
+state_t do_DELETE_CUSTOM_CHAR(char code) {
 
+  return WAIT;
+}
 
 
 
 void handleChar(char code) {
+  Serial.print(state);
+  Serial.print(" ");
+  Serial.print((uint8_t)code, HEX);
+  Serial.print("\n");
   state = transition_table[(int)state](code);
+
 } 
 
 void loop() {
