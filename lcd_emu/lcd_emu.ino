@@ -49,6 +49,9 @@ void readbit(){
 typedef enum {
   WAIT,
   _1F,
+  _1F_43,
+  _1F_72,
+  _1F_73,
   _1F_28,
   _1F_28_61,
   _1F_28_66,
@@ -112,12 +115,17 @@ typedef enum {
   JOIN_SCREENS,
   CURSOR_ON,
   CURSOR_OFF,
+  INVERT_ON,
+  INVERT_OFF,
 } state_t;
 
 typedef state_t transition_func_t(char code);
 
 state_t do_WAIT(char code);
 state_t do_1F(char code);
+state_t do_1F_43(char code);
+state_t do_1F_72(char code);
+state_t do_1F_73(char code);
 state_t do_1F_28(char code);
 state_t do_1F_28_61(char code);
 state_t do_1F_28_66(char code);
@@ -181,10 +189,15 @@ state_t do_DEFINE_WINDOW_HEIGHT_H(char code);
 state_t do_JOIN_SCREENS(char code);
 state_t do_CURSOR_ON(char code);
 state_t do_CURSOR_OFF(char code);
+state_t do_INVERT_ON(char code);
+state_t do_INVERT_OFF(char code);
 
 transition_func_t * const transition_table[] = {
   do_WAIT,
   do_1F,
+  do_1F_43,
+  do_1F_72,
+  do_1F_73,
   do_1F_28,
   do_1F_28_61,
   do_1F_28_66,
@@ -242,6 +255,8 @@ transition_func_t * const transition_table[] = {
   do_JOIN_SCREENS,
   do_CURSOR_ON,
   do_CURSOR_OFF,
+  do_INVERT_ON,
+  do_INVERT_OFF,
 };
 
 state_t state = WAIT;
@@ -261,8 +276,9 @@ char font_magnified_display_y = 0;
 
 char data[2][140] = {0};
 
-bool cursorOn; // I don't know what default value to set this as
-
+bool cursor_on; // I don't know what default value to set this as
+bool invert_on;
+char horizontal_speed;
 
 
 
@@ -304,6 +320,10 @@ state_t do_1F(char code) {
       return SET_SCREEN_BRIGHTNESS;
     case 0x43:
       return do_1F_43;
+    case 0x73:
+      return do_1F_73;
+    case 0x72:
+      return do_1F_72;
   }
   // Unknown sequence
   return WAIT;
@@ -312,11 +332,30 @@ state_t do_1F(char code) {
 state_t do_1F_43(char code) {
   switch(code) {
     case 0x01:
-      return do_CURSOR_ON;
+      return CURSOR_ON;
     case 0x00:
-      return do_CURSOR_OFF;
+      return CURSOR_OFF;
   }
   // Unknown sequence
+  return WAIT;
+}
+
+
+state_t do_1F_72(char code) {
+  switch(code) {
+    case 0x01:
+      return INVERT_ON;
+    case 0x00:
+      return INVERT_OFF;
+  }
+  // Unknown sequence
+  return WAIT;
+}
+
+
+state_t do_1F_73(char code) {
+  // horizontal_speed = code
+  
   return WAIT;
 }
 
@@ -583,11 +622,19 @@ state_t do_JOIN_SCREENS(char code ) {
 }
 
 state_t do_CURSOR_ON(char code) {
-  cursorOn = True;
+  cursor_on = True;
   return WAIT;
 }
 state_t do_CURSOR_OFF(char code) {
-  cursorOn = False;
+  cursor_on = False;
+  return WAIT;
+}
+state_t do_INVERT_ON(char code) {
+  invert_on = True;
+  return WAIT;
+}
+state_t do_INVERT_OFF(char code) {
+  invert_on = False;
   return WAIT;
 }
 
