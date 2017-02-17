@@ -57,6 +57,7 @@ typedef enum {
   _1F_28_66,
   _1F_28_67,
   _1F_28_77,
+  _1F_43,
   _1B,
   SET_POS_X_L,
   SET_POS_X_H,
@@ -131,6 +132,7 @@ state_t do_1F_28_61(char code);
 state_t do_1F_28_66(char code);
 state_t do_1F_28_67(char code);
 state_t do_1F_28_77(char code);
+state_t do_1F_43(char code);
 state_t do_1B(char code);
 state_t do_SET_POS_X_L(char code);
 state_t do_SET_POS_X_H(char code);
@@ -276,8 +278,8 @@ char font_magnified_display_y = 0;
 
 char data[2][140] = {0};
 
-bool cursor_on; // I don't know what default value to set this as
-bool invert_on;
+uint8_t cursor_on; // I don't know what default value to set this as
+uint8_t invert_on;
 char horizontal_speed;
 
 
@@ -621,19 +623,19 @@ state_t do_JOIN_SCREENS(char code ) {
 }
 
 state_t do_CURSOR_ON(char code) {
-  cursor_on = True;
+  cursor_on = 1;
   return WAIT;
 }
 state_t do_CURSOR_OFF(char code) {
-  cursor_on = False;
+  cursor_on = 0;
   return WAIT;
 }
 state_t do_INVERT_ON(char code) {
-  invert_on = True;
+  invert_on = 1;
   return WAIT;
 }
 state_t do_INVERT_OFF(char code) {
-  invert_on = False;
+  invert_on = 0;
   return WAIT;
 }
 
