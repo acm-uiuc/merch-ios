@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>ABPadLockScreen.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-merch-ui.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-merch-uiTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-merch-uiUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0121BB68AB7C7BB6287793750A56AC70</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>23A7C69BB18DF781A3996CA0C9A84A59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2F2461B8A094F4A4A6BA6B0C92BB403</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E80266F9930246BACC804B37D8541892</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

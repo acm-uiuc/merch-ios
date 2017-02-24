@@ -1,0 +1,6 @@
+framework module Pods_merch_uiUITests {
+  umbrella header "Pods-merch-uiUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
