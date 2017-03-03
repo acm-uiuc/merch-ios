@@ -11,3 +11,5 @@ Possible information sources:
 
 [LCD Code Library](https://www.noritake-elec.com/support/design-resources/code-libraries/code-library#gu7000)
 has some useful info about what commands are sent
+
+[LCD Command List](https://www.noritake-elec.com/support/design-resources/support-guide/gu-7000-command-description)

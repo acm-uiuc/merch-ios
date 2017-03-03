@@ -1,4 +1,7 @@
 #include <stdint.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
 const int CLK=2;
 const int RESET=3;
 const int SIGNAL=6;
@@ -13,20 +16,24 @@ enum {
 };
 
 void setup() {
-    pinMode(CLK, INPUT_PULLUP);
-    pinMode(RESET,INPUT_PULLUP);
-    pinMode(SIGNAL, INPUT);
-    pinMode(BUSY, OUTPUT);
-    attachInterrupt(PIN2Interrupt, readbit, RISING);
-    attachInterrupt(PIN3Interrupt, do_reset, FALLING);
-    Serial.begin(115200);
+  pinMode(CLK, INPUT);
+  pinMode(RESET, INPUT);
+  pinMode(SIGNAL, INPUT);
+  pinMode(BUSY, OUTPUT);
+  attachInterrupt(PIN2Interrupt, readbit, RISING);
+  attachInterrupt(PIN3Interrupt, do_reset, FALLING);
+  Serial.begin(115200);
+
+
+  // Setup timers to use for timeout
+  timer_init();
 }
 
-int bufferchar = 0;
-char lastChar = 0;
-int lastCharValid = 0;
-int count = 0;
-int reset = 0;
+volatile int bufferchar = 0;
+volatile char lastChar = 0;
+volatile int lastCharValid = 0;
+volatile int count = 0;
+volatile int reset = 0;
 
 typedef struct {
   uint16_t x;
@@ -36,17 +43,6 @@ typedef struct {
 Cursor cursor = {0, 0};
 
 
-
-void readbit(){
-  int bit = digitalRead(SIGNAL);
-  bufferchar = (bufferchar >> 1) | (bit << 7);
-  count += 1;
-  if (count == 8) {
-    lastChar = bufferchar;
-    count = 0;
-    lastCharValid = 1;
-  }
-}
 
 typedef enum {
   WAIT,
@@ -295,97 +291,114 @@ uint8_t invert_on;
 char horizontal_speed;
 
 
-
+void cursor_inc() {
+  cursor.x++;
+  if(cursor.x >= DIM_X) {
+    cursor.y++;
+    if(cursor.y >= DIM_Y) {
+      cursor.y = DIM_Y-1;
+    }
+  }
+}
+void cursor_dec() {
+  cursor.x--;
+  if (cursor.x < 0) {
+    cursor.y--;
+    if (cursor.y < 0) {
+      cursor.y = 0;
+    }
+  } 
+}
+void cursor_newline() {
+  cursor.y++;
+  if(cursor.y >= DIM_Y) {
+    cursor.y = DIM_Y - 1;
+  }
+}
 
 state_t do_WAIT(char code) {
   switch(code) {
-    case 0x1F:
-      return _1F;
-    case 0x1B:
-      return _1B;
-    case 0x0C:
-      //clears the screen
-      Serial.print("Clear screen\n");
-      return WAIT;
+  case 0x1F:
+    return _1F;
+  case 0x1B:
+    return _1B;
+  case 0x0C:
+    //clears the screen and resets the cursor
+    Serial.print("Clear screen\n");
+    cursor.x = 0;
+    cursor.y = 0;
+    memset(&data[0][0], 0, 2*140);
+    return WAIT;
   }
   switch(code) {
-    case 0x08:
-      cursor.x = cursor.x - 1;
-      if (cursor.x < 0) {
-        cursor.y--;
-        if (cursor.y < 0) {
-          cursor.y = 0;
-        }
-      }
-      break;
-    case 0x09:
-      cursor.x++;
-      if(cursor.x >= DIM_X) {
-        cursor.y++;
-        if(cursor.y >= DIM_Y) {
-          cursor.y = DIM_Y-1;
-        }
-      }
-      break;
-    case 0x0A:
-      cursor.y++;
-      if(cursor.y >= DIM_Y) {
-        cursor.y = DIM_Y - 1;
-      }
-      break;
-    case 0x0B:
-      cursor.x = 0;
-      cursor.y = 0;
-      break;
-    case 0x0C:
-      cursor.x = 0;
-      break;
+  case 0x08:
+    cursor_dec();
+    break;
+  case 0x09:
+    cursor_inc;
+    break;
+  case 0x0A:
+    cursor_newline();
+    break;
+  case 0x0B:
+    cursor.x = 0;
+    cursor.y = 0;
+    break;
+  case 0x0C:
+    cursor.x = 0;
+    break;
   }
-  if(code >= 0x20){
+  if(code >= 0x20 && !(code < 0x80 == 0)){
     // Handle the character
     data[cursor.y][cursor.x] = code;
     cursor.x++;
     if(cursor.x >= DIM_X) {
       cursor.y++;
       if(cursor.y >= DIM_Y) {
-        cursor.y = DIM_Y - 1;
+	cursor.y = DIM_Y - 1;
       }
     }
+    Serial.print(cursor.x);
+    Serial.print(",");
+    Serial.print(cursor.y);
+    Serial.print(" ");
     Serial.print(code);
     Serial.print('\n');
-  }  
+    /* Serial.print(&data[0][0]); */
+    /* Serial.print('\n'); */
+  }
 
   return WAIT;
 }
 
 state_t do_1F(char code) {
   switch(code) {
-    case 0x10:
-      return SELECT_WINDOW0;
-    case 0x11:
-      return SELECT_WINDOW1;
-    case 0x12:
-      return SELECT_WINDOW2;
-    case 0x13:
-      return SELECT_WINDOW3;
-    case 0x14:
-      return SELECT_WINDOW4;
-    case 0x1F:
-      return _1F;
-    case 0x24:
-      return SET_POS_X_L;
-    case 0x28:
-      return _1F_28;
-    case 0x77:
-      return SET_COMPOSITION_MODE;
-    case 0x58:
-      return SET_SCREEN_BRIGHTNESS;
-    case 0x43:
-      return _1F_43;
-    case 0x73:
-      return _1F_73;
-    case 0x72:
-      return _1F_72;
+  case 0x10:
+    return SELECT_WINDOW0;
+  case 0x11:
+    return SELECT_WINDOW1;
+  case 0x12:
+    return SELECT_WINDOW2;
+  case 0x13:
+    return SELECT_WINDOW3;
+  case 0x14:
+    return SELECT_WINDOW4;
+  case 0x1F:
+    return _1F;
+  case 0x24:
+    return SET_POS_X_L;
+  case 0x28:
+    return _1F_28;
+  case 0x77:
+    return SET_COMPOSITION_MODE;
+  case 0x58:
+    return SET_SCREEN_BRIGHTNESS;
+  case 0x43:
+    return _1F_43;
+  case 0x73:
+    return _1F_73;
+  case 0x72:
+    return _1F_72;
 
   }
   // Unknown sequence
@@ -394,10 +407,10 @@ state_t do_1F(char code) {
 
 state_t do_1F_43(char code) {
   switch(code) {
-    case 0x01:
-      return CURSOR_ON;
-    case 0x00:
-      return CURSOR_OFF;
+  case 0x01:
+    return CURSOR_ON;
+  case 0x00:
+    return CURSOR_OFF;
   }
   // Unknown sequence
   return WAIT;
@@ -406,10 +419,10 @@ state_t do_1F_43(char code) {
 
 state_t do_1F_72(char code) {
   switch(code) {
-    case 0x01:
-      return INVERT_ON;
-    case 0x00:
-      return INVERT_OFF;
+  case 0x01:
+    return INVERT_ON;
+  case 0x00:
+    return INVERT_OFF;
   }
   // Unknown sequence
   return WAIT;
@@ -423,58 +436,58 @@ state_t do_1F_73(char code) {
 
 state_t do_1F_28(char code) {
   switch(code) {
-    case 0x61:
-      return _1F_28_61;
-    case 0x66:
-      return _1F_28_66;
-    case 0x67:
-      return _1F_28_67;
-    case 0x77:
-      return _1F_28_77;
+  case 0x61:
+    return _1F_28_61;
+  case 0x66:
+    return _1F_28_66;
+  case 0x67:
+    return _1F_28_67;
+  case 0x77:
+    return _1F_28_77;
   }
   // Unknown sequence
   return WAIT;
 }
 state_t do_1F_28_77(char code) {
   switch(code) {
-    case 0x02:
-      return DEFINE_WINDOW0;
-    case 0x10:
-      return JOIN_SCREENS;
+  case 0x02:
+    return DEFINE_WINDOW0;
+  case 0x10:
+    return JOIN_SCREENS;
   }
 }
 state_t do_1F_28_61(char code) {
   switch(code) {
-    case 0x40:
-      return SCREENSAVER;
-    case 0x01:
-      return TIME_WAIT;
-    case 0x10:
-      return SCROLL_SCREEN1;
-    case 0x11:
-      return BLINK_SCREEN1;
+  case 0x40:
+    return SCREENSAVER;
+  case 0x01:
+    return TIME_WAIT;
+  case 0x10:
+    return SCROLL_SCREEN1;
+  case 0x11:
+    return BLINK_SCREEN1;
   }
   return WAIT;
 }
 state_t do_1F_28_66(char code) {
   switch(code) {
-    case 0x11:
-      return BIT_IMAGE_DISPLAY_GROUP_1;
+  case 0x11:
+    return BIT_IMAGE_DISPLAY_GROUP_1;
   }
   return WAIT;
 }
 state_t do_1F_28_67(char code) {
   switch(code) {
-    case 0x01:
-      return SET_FONT_SIZE_TALL;
-    case 0x02:
-      return USE_MULTIBYTE_CHARS;
-    case 0x03:
-      return SET_FONT_STYLE;
-    case 0x0F:
-      return SET_MULTIBYTE_CHARSET;
-    case 0x40:
-      return FONT_MAGNIFIED_DISPLAY_1;
+  case 0x01:
+    return SET_FONT_SIZE_TALL;
+  case 0x02:
+    return USE_MULTIBYTE_CHARS;
+  case 0x03:
+    return SET_FONT_STYLE;
+  case 0x0F:
+    return SET_MULTIBYTE_CHARSET;
+  case 0x40:
+    return FONT_MAGNIFIED_DISPLAY_1;
   }
   return WAIT;
 }
@@ -488,23 +501,23 @@ state_t do_SET_MULTIBYTE_CHARSET(char code) {
 }
 state_t do_1B(char code) {
   switch(code) {
-    case 0x3F:
-      return _1B_3F;
-    case 0x40:
-      // Initialize display
-      Serial.print("Initializing\n");
-      return WAIT;
-    case 0x52:
-      return SPECIFY_INTERNATIONAL_FONT;
-    case 0x74:
-      return _1B_74;
+  case 0x3F:
+    return _1B_3F;
+  case 0x40:
+    // Initialize display
+    Serial.print("Initializing\n");
+    return WAIT;
+  case 0x52:
+    return SPECIFY_INTERNATIONAL_FONT;
+  case 0x74:
+    return _1B_74;
   }
   return WAIT;
 }
 state_t do_1B_3F(char code) {
   switch(code) {
-    case 0x01:
-      return DELETE_CUSTOM_CHAR;
+  case 0x01:
+    return DELETE_CUSTOM_CHAR;
   }
   return WAIT;
 }
@@ -513,7 +526,6 @@ state_t do_1B_74(char code) {
   return WAIT;
 }
 state_t do_SET_POS_X_L(char code) {
-  data[cursor.y][cursor.x] = '\0';
   cursor.x = 0;
   cursor.x |= (uint16_t)code & 0xFF;
   return SET_POS_X_H;
@@ -528,7 +540,11 @@ state_t do_SET_POS_Y_L(char code) {
 }
 state_t do_SET_POS_Y_H(char code) {
   cursor.y |= (uint16_t)code << 8;
-  Serial.print("cursor set\n");
+  Serial.print("cursor set ");
+  Serial.print(cursor.x);
+  Serial.print(",");
+  Serial.print(cursor.y);
+  Serial.print("\n");
   return WAIT;
 }
 state_t do_SET_BRIGHTNESS(char code) {
@@ -727,28 +743,103 @@ void handleChar(char code) {
 } 
 
 void loop() {
-    noInterrupts();
+  Serial.print("Waiting for reset\n");
+  /* noInterrupts(); */
+  interrupts();
+  while(reset != 1) {}
+  Serial.print("Done waiting for reset\n");
+  reset = 0;
+  while(1) {
     if (lastCharValid == 1) {
-      digitalWrite(BUSY, HIGH);
+      /* digitalWrite(BUSY, HIGH); */
       char toWrite = lastChar;
       lastCharValid = 0;
+      /* digitalWrite(BUSY, LOW); */
+      /* interrupts(); */
       handleChar(toWrite);
-      interrupts();
-      digitalWrite(BUSY, LOW);
     }
     else if(reset == 1) {
       Serial.print("Got reset\n");
       reset = 0;
     }
-    interrupts();
+  }
 }
 
-void do_reset(){
+void do_reset() {
   count = 0;
   lastChar = 0;
   bufferchar = 0;
   lastCharValid = 0;
   reset = 1;
   state = WAIT;
+  Serial.println("Got reset");
 }
 
+void readbit(){
+  int bit = digitalRead(SIGNAL);
+  bufferchar = ((bufferchar >> 1) & ~0x80)| (bit << 7);
+  if(count == 0) {
+    start_recv_timeout();
+  }
+  count += 1;
+  if (count == 8) {
+    stop_recv_timeout();
+    lastChar = bufferchar;
+    count = 0;
+    lastCharValid = 1;
+  }
+}
+
+
+void timer_init() {
+  cli();
+  TCCR1A = 0;
+  TCCR1B = 0;
+
+  // Turn on CTC (Clear Timer on Compare) mode so that the timer gets cleared
+  // when the interrupt is triggered
+  TCCR1B |= (1 << WGM12);
+  // Set the prescaler to 1024
+  TCCR1B |= (1 << CS10);
+  TCCR1B |= (1 << CS12);
+
+  // Clear the count register
+  TCNT1L = 0;
+  TCNT1H = 0;
+
+  // Set the compare match register to count to
+  // 16MHz with 1024 prescaler = 15,624 ticks/second
+  // 13/15624 = 832 microseconds
+  OCR1A = 80;
+
+  // Disable the timer compare interrupt
+  TIMSK1 &= ~(1 << OCIE1A);
+  sei();
+}
+
+
+
+void start_recv_timeout() {
+  // Clear the current count
+  TCNT1L = 0;
+  TCNT1H = 0;
+  // Enable the timer compare interrupt
+  TIMSK1 |= (1 << OCIE1A);
+  digitalWrite(BUSY, HIGH);
+}
+
+void stop_recv_timeout() {
+  // Disable the timer compare interrupt
+  TIMSK1 &= ~(1 << OCIE1A);
+}
+
+ISR(TIMER1_COMPA_vect) {
+  // Timeout on the character being read
+  digitalWrite(BUSY, HIGH);
+  /* Serial.println("Timed out!"); */
+  stop_recv_timeout();
+  count = 0;
+  lastChar = 0;
+  bufferchar = 0;
+  lastCharValid = 0;
+}

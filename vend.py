@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+# import argparse
+import sys
 
 
 
@@ -32,11 +34,27 @@ def commit():
     LOW()
 
 
+def reject(bad_position):
+    print("%s is not a valid character" % bad_position)
 
 def main():
+    if(sys.argc != 2):
+        print("Please specify the location to vend")
+        sys.exit(-1)
+    char = sys.argv[1][0]
+    num = sys.argv[1][1]
+    if(len(sys.argv[1])):
+        reject(sys.argv[1])
+    else if(ord(char) < 'A' or ord(char) > 'Z'):
+        reject(sys.argv[1])
+    else if(ord(char) < '0' or ord(char) > '9'):
+        reject(sys.argv[1])
+
     setup()
     LOW()
     commit()
+
+    vend(char, int(num))
 
     # time.sleep(0.5)
     # GPIO.output(COL[0], GPIO.HIGH)
