@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "958090DC1E45383E007F7740"
+               BlueprintIdentifier = "959C7D281E71DB6D00BE8958"
                BuildableName = "merch-ui.app"
                BlueprintName = "merch-ui"
                ReferencedContainer = "container:merch-ui.xcodeproj">
@@ -28,31 +28,11 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "958090F01E45383E007F7740"
-               BuildableName = "merch-uiTests.xctest"
-               BlueprintName = "merch-uiTests"
-               ReferencedContainer = "container:merch-ui.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "958090FB1E45383E007F7740"
-               BuildableName = "merch-uiUITests.xctest"
-               BlueprintName = "merch-uiUITests"
-               ReferencedContainer = "container:merch-ui.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "958090DC1E45383E007F7740"
+            BlueprintIdentifier = "959C7D281E71DB6D00BE8958"
             BuildableName = "merch-ui.app"
             BlueprintName = "merch-ui"
             ReferencedContainer = "container:merch-ui.xcodeproj">
@@ -75,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "958090DC1E45383E007F7740"
+            BlueprintIdentifier = "959C7D281E71DB6D00BE8958"
             BuildableName = "merch-ui.app"
             BlueprintName = "merch-ui"
             ReferencedContainer = "container:merch-ui.xcodeproj">
@@ -94,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "958090DC1E45383E007F7740"
+            BlueprintIdentifier = "959C7D281E71DB6D00BE8958"
             BuildableName = "merch-ui.app"
             BlueprintName = "merch-ui"
             ReferencedContainer = "container:merch-ui.xcodeproj">

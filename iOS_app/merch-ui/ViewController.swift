@@ -2,13 +2,13 @@
 //  ViewController.swift
 //  merch-ui
 //
-//  Created by Rauhul Varma on 2/3/17.
+//  Created by Rauhul Varma on 3/9/17.
 //  Copyright © 2017 acm. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    
 }
 

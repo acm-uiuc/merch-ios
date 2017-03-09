@@ -1,6 +1,0 @@
-framework module ABPadLockScreen {
-  umbrella header "ABPadLockScreen-umbrella.h"
-
-  export *
-  module * { export * }
-}

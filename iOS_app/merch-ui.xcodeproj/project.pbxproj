@@ -7,177 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32EC9911D17BF06F32169869 /* Pods_merch_ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB359A820BA18A82DA510D3 /* Pods_merch_ui.framework */; };
-		3E66937F5D471ABE0C6BB81D /* Pods_merch_uiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11EC6888C53B8E78F77D028 /* Pods_merch_uiUITests.framework */; };
-		958090E11E45383E007F7740 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958090E01E45383E007F7740 /* AppDelegate.swift */; };
-		958090E31E45383E007F7740 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958090E21E45383E007F7740 /* ViewController.swift */; };
-		958090E61E45383E007F7740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958090E41E45383E007F7740 /* Main.storyboard */; };
-		958090E81E45383E007F7740 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958090E71E45383E007F7740 /* Assets.xcassets */; };
-		958090EB1E45383E007F7740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958090E91E45383E007F7740 /* LaunchScreen.storyboard */; };
-		958090F61E45383E007F7740 /* merch_uiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958090F51E45383E007F7740 /* merch_uiTests.swift */; };
-		958091011E45383E007F7740 /* merch_uiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958091001E45383E007F7740 /* merch_uiUITests.swift */; };
-		CDDF5090E3B5FA3076450C40 /* Pods_merch_uiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BE5167C9A308081A78F25C /* Pods_merch_uiTests.framework */; };
+		959C7D2D1E71DB6D00BE8958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */; };
+		959C7D2F1E71DB6D00BE8958 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C7D2E1E71DB6D00BE8958 /* ViewController.swift */; };
+		959C7D321E71DB6D00BE8958 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D301E71DB6D00BE8958 /* Main.storyboard */; };
+		959C7D341E71DB6D00BE8958 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D331E71DB6D00BE8958 /* Assets.xcassets */; };
+		959C7D371E71DB6D00BE8958 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		958090F21E45383E007F7740 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 958090D51E45383E007F7740 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 958090DC1E45383E007F7740;
-			remoteInfo = "merch-ui";
-		};
-		958090FD1E45383E007F7740 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 958090D51E45383E007F7740 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 958090DC1E45383E007F7740;
-			remoteInfo = "merch-ui";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		21BE5167C9A308081A78F25C /* Pods_merch_uiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_merch_uiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A6D7F7AB49CAE15E6B02510 /* Pods-merch-uiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-uiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-merch-uiTests/Pods-merch-uiTests.release.xcconfig"; sourceTree = "<group>"; };
-		6B851FDAAE3528AF9CE31485 /* Pods-merch-uiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-uiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-merch-uiUITests/Pods-merch-uiUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6BF5480EF1AED0CF5198AC81 /* Pods-merch-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.debug.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.debug.xcconfig"; sourceTree = "<group>"; };
-		8B01F5F9089B5B27DCB3116E /* Pods-merch-uiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-uiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-merch-uiUITests/Pods-merch-uiUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		958090DD1E45383E007F7740 /* merch-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "merch-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		958090E01E45383E007F7740 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		958090E21E45383E007F7740 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		958090E51E45383E007F7740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		958090E71E45383E007F7740 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		958090EA1E45383E007F7740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		958090EC1E45383E007F7740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		958090F11E45383E007F7740 /* merch-uiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "merch-uiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		958090F51E45383E007F7740 /* merch_uiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = merch_uiTests.swift; sourceTree = "<group>"; };
-		958090F71E45383E007F7740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		958090FC1E45383E007F7740 /* merch-uiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "merch-uiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		958091001E45383E007F7740 /* merch_uiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = merch_uiUITests.swift; sourceTree = "<group>"; };
-		958091021E45383E007F7740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD1DE198692D4C53080EACD6 /* Pods-merch-uiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-uiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-merch-uiTests/Pods-merch-uiTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C11EC6888C53B8E78F77D028 /* Pods_merch_uiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_merch_uiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF44A5E88FC3EF55A09FE258 /* Pods-merch-ui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.release.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.release.xcconfig"; sourceTree = "<group>"; };
-		DCB359A820BA18A82DA510D3 /* Pods_merch_ui.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_merch_ui.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		959C7D291E71DB6D00BE8958 /* merch-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "merch-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		959C7D2E1E71DB6D00BE8958 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		959C7D311E71DB6D00BE8958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		959C7D331E71DB6D00BE8958 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		959C7D361E71DB6D00BE8958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		959C7D381E71DB6D00BE8958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		958090DA1E45383E007F7740 /* Frameworks */ = {
+		959C7D261E71DB6D00BE8958 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32EC9911D17BF06F32169869 /* Pods_merch_ui.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090EE1E45383E007F7740 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDDF5090E3B5FA3076450C40 /* Pods_merch_uiTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090F91E45383E007F7740 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E66937F5D471ABE0C6BB81D /* Pods_merch_uiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F0A6AA1C60E8601FC1BD1DA /* Frameworks */ = {
+		959C7D201E71DB6D00BE8958 = {
 			isa = PBXGroup;
 			children = (
-				DCB359A820BA18A82DA510D3 /* Pods_merch_ui.framework */,
-				21BE5167C9A308081A78F25C /* Pods_merch_uiTests.framework */,
-				C11EC6888C53B8E78F77D028 /* Pods_merch_uiUITests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4A6441788444A26B51D0FC38 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6BF5480EF1AED0CF5198AC81 /* Pods-merch-ui.debug.xcconfig */,
-				CF44A5E88FC3EF55A09FE258 /* Pods-merch-ui.release.xcconfig */,
-				BD1DE198692D4C53080EACD6 /* Pods-merch-uiTests.debug.xcconfig */,
-				2A6D7F7AB49CAE15E6B02510 /* Pods-merch-uiTests.release.xcconfig */,
-				8B01F5F9089B5B27DCB3116E /* Pods-merch-uiUITests.debug.xcconfig */,
-				6B851FDAAE3528AF9CE31485 /* Pods-merch-uiUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		958090D41E45383E007F7740 = {
-			isa = PBXGroup;
-			children = (
-				958090DF1E45383E007F7740 /* merch-ui */,
-				958090F41E45383E007F7740 /* merch-uiTests */,
-				958090FF1E45383E007F7740 /* merch-uiUITests */,
-				958090DE1E45383E007F7740 /* Products */,
-				4A6441788444A26B51D0FC38 /* Pods */,
-				1F0A6AA1C60E8601FC1BD1DA /* Frameworks */,
+				959C7D2B1E71DB6D00BE8958 /* merch-ui */,
+				959C7D2A1E71DB6D00BE8958 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		958090DE1E45383E007F7740 /* Products */ = {
+		959C7D2A1E71DB6D00BE8958 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				958090DD1E45383E007F7740 /* merch-ui.app */,
-				958090F11E45383E007F7740 /* merch-uiTests.xctest */,
-				958090FC1E45383E007F7740 /* merch-uiUITests.xctest */,
+				959C7D291E71DB6D00BE8958 /* merch-ui.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		958090DF1E45383E007F7740 /* merch-ui */ = {
+		959C7D2B1E71DB6D00BE8958 /* merch-ui */ = {
 			isa = PBXGroup;
 			children = (
-				958090E01E45383E007F7740 /* AppDelegate.swift */,
-				958090E21E45383E007F7740 /* ViewController.swift */,
-				958090E41E45383E007F7740 /* Main.storyboard */,
-				958090E71E45383E007F7740 /* Assets.xcassets */,
-				958090E91E45383E007F7740 /* LaunchScreen.storyboard */,
-				958090EC1E45383E007F7740 /* Info.plist */,
+				959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */,
+				959C7D2E1E71DB6D00BE8958 /* ViewController.swift */,
+				959C7D301E71DB6D00BE8958 /* Main.storyboard */,
+				959C7D331E71DB6D00BE8958 /* Assets.xcassets */,
+				959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */,
+				959C7D381E71DB6D00BE8958 /* Info.plist */,
 			);
 			path = "merch-ui";
-			sourceTree = "<group>";
-		};
-		958090F41E45383E007F7740 /* merch-uiTests */ = {
-			isa = PBXGroup;
-			children = (
-				958090F51E45383E007F7740 /* merch_uiTests.swift */,
-				958090F71E45383E007F7740 /* Info.plist */,
-			);
-			path = "merch-uiTests";
-			sourceTree = "<group>";
-		};
-		958090FF1E45383E007F7740 /* merch-uiUITests */ = {
-			isa = PBXGroup;
-			children = (
-				958091001E45383E007F7740 /* merch_uiUITests.swift */,
-				958091021E45383E007F7740 /* Info.plist */,
-			);
-			path = "merch-uiUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		958090DC1E45383E007F7740 /* merch-ui */ = {
+		959C7D281E71DB6D00BE8958 /* merch-ui */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 958091051E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-ui" */;
+			buildConfigurationList = 959C7D3B1E71DB6D00BE8958 /* Build configuration list for PBXNativeTarget "merch-ui" */;
 			buildPhases = (
-				590129C43831F614964EEDC0 /* [CP] Check Pods Manifest.lock */,
-				958090D91E45383E007F7740 /* Sources */,
-				958090DA1E45383E007F7740 /* Frameworks */,
-				958090DB1E45383E007F7740 /* Resources */,
-				EFA1C431D24DC729ED950E29 /* [CP] Embed Pods Frameworks */,
-				31270586AEB2BB9B6B68A852 /* [CP] Copy Pods Resources */,
+				959C7D251E71DB6D00BE8958 /* Sources */,
+				959C7D261E71DB6D00BE8958 /* Frameworks */,
+				959C7D271E71DB6D00BE8958 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -185,78 +81,27 @@
 			);
 			name = "merch-ui";
 			productName = "merch-ui";
-			productReference = 958090DD1E45383E007F7740 /* merch-ui.app */;
+			productReference = 959C7D291E71DB6D00BE8958 /* merch-ui.app */;
 			productType = "com.apple.product-type.application";
-		};
-		958090F01E45383E007F7740 /* merch-uiTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 958091081E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-uiTests" */;
-			buildPhases = (
-				AE5D2E643E9F0553A479AB68 /* [CP] Check Pods Manifest.lock */,
-				958090ED1E45383E007F7740 /* Sources */,
-				958090EE1E45383E007F7740 /* Frameworks */,
-				958090EF1E45383E007F7740 /* Resources */,
-				26039C838484DDF898B8F7F0 /* [CP] Embed Pods Frameworks */,
-				7B938814F372D94538BFF4CF /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				958090F31E45383E007F7740 /* PBXTargetDependency */,
-			);
-			name = "merch-uiTests";
-			productName = "merch-uiTests";
-			productReference = 958090F11E45383E007F7740 /* merch-uiTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		958090FB1E45383E007F7740 /* merch-uiUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9580910B1E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-uiUITests" */;
-			buildPhases = (
-				58F0F93F204334533045BD26 /* [CP] Check Pods Manifest.lock */,
-				958090F81E45383E007F7740 /* Sources */,
-				958090F91E45383E007F7740 /* Frameworks */,
-				958090FA1E45383E007F7740 /* Resources */,
-				2A75495E1162F2A9D4CB350B /* [CP] Embed Pods Frameworks */,
-				CC69E8700135B65EEB847FA2 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				958090FE1E45383E007F7740 /* PBXTargetDependency */,
-			);
-			name = "merch-uiUITests";
-			productName = "merch-uiUITests";
-			productReference = 958090FC1E45383E007F7740 /* merch-uiUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		958090D51E45383E007F7740 /* Project object */ = {
+		959C7D211E71DB6D00BE8958 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = acm;
 				TargetAttributes = {
-					958090DC1E45383E007F7740 = {
+					959C7D281E71DB6D00BE8958 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8VNQTQM2L6;
 						ProvisioningStyle = Automatic;
-					};
-					958090F01E45383E007F7740 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 958090DC1E45383E007F7740;
-					};
-					958090FB1E45383E007F7740 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 958090DC1E45383E007F7740;
 					};
 				};
 			};
-			buildConfigurationList = 958090D81E45383E007F7740 /* Build configuration list for PBXProject "merch-ui" */;
+			buildConfigurationList = 959C7D241E71DB6D00BE8958 /* Build configuration list for PBXProject "merch-ui" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -264,237 +109,54 @@
 				en,
 				Base,
 			);
-			mainGroup = 958090D41E45383E007F7740;
-			productRefGroup = 958090DE1E45383E007F7740 /* Products */;
+			mainGroup = 959C7D201E71DB6D00BE8958;
+			productRefGroup = 959C7D2A1E71DB6D00BE8958 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				958090DC1E45383E007F7740 /* merch-ui */,
-				958090F01E45383E007F7740 /* merch-uiTests */,
-				958090FB1E45383E007F7740 /* merch-uiUITests */,
+				959C7D281E71DB6D00BE8958 /* merch-ui */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		958090DB1E45383E007F7740 /* Resources */ = {
+		959C7D271E71DB6D00BE8958 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				958090EB1E45383E007F7740 /* LaunchScreen.storyboard in Resources */,
-				958090E81E45383E007F7740 /* Assets.xcassets in Resources */,
-				958090E61E45383E007F7740 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090EF1E45383E007F7740 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090FA1E45383E007F7740 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				959C7D371E71DB6D00BE8958 /* LaunchScreen.storyboard in Resources */,
+				959C7D341E71DB6D00BE8958 /* Assets.xcassets in Resources */,
+				959C7D321E71DB6D00BE8958 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		26039C838484DDF898B8F7F0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-uiTests/Pods-merch-uiTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2A75495E1162F2A9D4CB350B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-uiUITests/Pods-merch-uiUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		31270586AEB2BB9B6B68A852 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		58F0F93F204334533045BD26 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		590129C43831F614964EEDC0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		7B938814F372D94538BFF4CF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-uiTests/Pods-merch-uiTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AE5D2E643E9F0553A479AB68 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CC69E8700135B65EEB847FA2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-uiUITests/Pods-merch-uiUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFA1C431D24DC729ED950E29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		958090D91E45383E007F7740 /* Sources */ = {
+		959C7D251E71DB6D00BE8958 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				958090E31E45383E007F7740 /* ViewController.swift in Sources */,
-				958090E11E45383E007F7740 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090ED1E45383E007F7740 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				958090F61E45383E007F7740 /* merch_uiTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		958090F81E45383E007F7740 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				958091011E45383E007F7740 /* merch_uiUITests.swift in Sources */,
+				959C7D2F1E71DB6D00BE8958 /* ViewController.swift in Sources */,
+				959C7D2D1E71DB6D00BE8958 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		958090F31E45383E007F7740 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 958090DC1E45383E007F7740 /* merch-ui */;
-			targetProxy = 958090F21E45383E007F7740 /* PBXContainerItemProxy */;
-		};
-		958090FE1E45383E007F7740 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 958090DC1E45383E007F7740 /* merch-ui */;
-			targetProxy = 958090FD1E45383E007F7740 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		958090E41E45383E007F7740 /* Main.storyboard */ = {
+		959C7D301E71DB6D00BE8958 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				958090E51E45383E007F7740 /* Base */,
+				959C7D311E71DB6D00BE8958 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		958090E91E45383E007F7740 /* LaunchScreen.storyboard */ = {
+		959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				958090EA1E45383E007F7740 /* Base */,
+				959C7D361E71DB6D00BE8958 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -502,7 +164,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		958091031E45383E007F7740 /* Debug */ = {
+		959C7D391E71DB6D00BE8958 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -552,7 +214,7 @@
 			};
 			name = Debug;
 		};
-		958091041E45383E007F7740 /* Release */ = {
+		959C7D3A1E71DB6D00BE8958 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -595,127 +257,56 @@
 			};
 			name = Release;
 		};
-		958091061E45383E007F7740 /* Debug */ = {
+		959C7D3C1E71DB6D00BE8958 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BF5480EF1AED0CF5198AC81 /* Pods-merch-ui.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8VNQTQM2L6;
 				INFOPLIST_FILE = "merch-ui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		958091071E45383E007F7740 /* Release */ = {
+		959C7D3D1E71DB6D00BE8958 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF44A5E88FC3EF55A09FE258 /* Pods-merch-ui.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8VNQTQM2L6;
 				INFOPLIST_FILE = "merch-ui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-ui";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		958091091E45383E007F7740 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD1DE198692D4C53080EACD6 /* Pods-merch-uiTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "merch-uiTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-uiTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/merch-ui.app/merch-ui";
-			};
-			name = Debug;
-		};
-		9580910A1E45383E007F7740 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A6D7F7AB49CAE15E6B02510 /* Pods-merch-uiTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = "merch-uiTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-uiTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/merch-ui.app/merch-ui";
-			};
-			name = Release;
-		};
-		9580910C1E45383E007F7740 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B01F5F9089B5B27DCB3116E /* Pods-merch-uiUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = "merch-uiUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-uiUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "merch-ui";
-			};
-			name = Debug;
-		};
-		9580910D1E45383E007F7740 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6B851FDAAE3528AF9CE31485 /* Pods-merch-uiUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = "merch-uiUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "acm.merch-uiUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "merch-ui";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		958090D81E45383E007F7740 /* Build configuration list for PBXProject "merch-ui" */ = {
+		959C7D241E71DB6D00BE8958 /* Build configuration list for PBXProject "merch-ui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				958091031E45383E007F7740 /* Debug */,
-				958091041E45383E007F7740 /* Release */,
+				959C7D391E71DB6D00BE8958 /* Debug */,
+				959C7D3A1E71DB6D00BE8958 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		958091051E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-ui" */ = {
+		959C7D3B1E71DB6D00BE8958 /* Build configuration list for PBXNativeTarget "merch-ui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				958091061E45383E007F7740 /* Debug */,
-				958091071E45383E007F7740 /* Release */,
+				959C7D3C1E71DB6D00BE8958 /* Debug */,
+				959C7D3D1E71DB6D00BE8958 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		958091081E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-uiTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				958091091E45383E007F7740 /* Debug */,
-				9580910A1E45383E007F7740 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		9580910B1E45383E007F7740 /* Build configuration list for PBXNativeTarget "merch-uiUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9580910C1E45383E007F7740 /* Debug */,
-				9580910D1E45383E007F7740 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 958090D51E45383E007F7740 /* Project object */;
+	rootObject = 959C7D211E71DB6D00BE8958 /* Project object */;
 }
