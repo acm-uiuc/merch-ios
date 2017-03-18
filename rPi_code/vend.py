@@ -1,16 +1,12 @@
 import RPi.GPIO as GPIO
 import time
-# import argparse
 import sys
-
-
 
 GPIO.setmode(GPIO.BCM)
 
-CLOCK = 21
-ROW = [26, 16, 20]
+CLOCK = 26
+ROW = [21, 20, 16]
 COL = [19, 13]
-
 
 def setup():
     GPIO.setup(CLOCK, GPIO.OUT, initial=GPIO.LOW)
@@ -38,32 +34,15 @@ def reject(bad_position):
     print("%s is not a valid character" % bad_position)
 
 def main():
-    if(sys.argc != 2):
-        print("Please specify the location to vend")
-        sys.exit(-1)
     char = sys.argv[1][0]
     num = sys.argv[1][1]
-    if(len(sys.argv[1])):
-        reject(sys.argv[1])
-    else if(ord(char) < 'A' or ord(char) > 'Z'):
-        reject(sys.argv[1])
-    else if(ord(char) < '0' or ord(char) > '9'):
-        reject(sys.argv[1])
-
+    
     setup()
     LOW()
     commit()
 
     vend(char, int(num))
-
-    # time.sleep(0.5)
-    # GPIO.output(COL[0], GPIO.HIGH)
-    # GPIO.output(ROW[0], GPIO.HIGH)
-    # commit()
-    # LOW()
-    # commit()
-    # time.sleep(1)
-
+    GPIO.cleanup()
 
 def vend(letter, number):
     # Set the letter
@@ -80,15 +59,16 @@ def vend(letter, number):
 
     commit()
 
-
     # Set the number
-    row = (number-1) / 2
+    row = int((number-1) / 2)
     col = (number+1) % 2+1
 
     if(col & 0b01):
         GPIO.output(COL[1], GPIO.HIGH)
     if(col & 0b10):
         GPIO.output(COL[0], GPIO.HIGH)
+
+    print(row, col)
 
     if(row & 0x100):
         GPIO.output(ROW[0], GPIO.HIGH)
@@ -99,7 +79,6 @@ def vend(letter, number):
 
     commit()
     commit()
-
 
 
 # TABLE OF OUTPUTS
@@ -127,6 +106,3 @@ def vend(letter, number):
 
 if __name__ == "__main__":
     main()
-    vend('A', 3)
-    # new()
-    # GPIO.cleanup()
