@@ -4695,19 +4695,19 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="FRAME1" library="frames" deviceset="A3L-LOC" device="" value="merch_hat"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
-<part name="ROW_MUX" library="74xx-us" deviceset="74*151" device="D" technology="LS" value="74LS151D"/>
-<part name="COL_DEMUX" library="74xx-us" deviceset="74*155" device="D" technology="LS" value="74LS155D"/>
-<part name="SELECT_BITS" library="74xx-us" deviceset="74*174" device="D" technology="LS" value="74LS174D"/>
+<part name="ROW_MUX" library="74xx-us" deviceset="74*151" device="N" technology="LS"/>
+<part name="COL_DEMUX" library="74xx-us" deviceset="74*155" device="N" technology="LS"/>
+<part name="SELECT_BITS" library="74xx-us" deviceset="74*174" device="N" technology="LS"/>
 <part name="JP1" library="pinhead" deviceset="PINHD-1X10" device="" value="HEADER"/>
-<part name="R1" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R2" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R3" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R4" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R5" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R6" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R7" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R8" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
-<part name="R9" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R5" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R6" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R7" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R8" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
+<part name="R9" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
@@ -4722,9 +4722,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="R10" library="resistor" deviceset="R-US_" device="R0402" value="3.3k"/>
+<part name="R10" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
-<part name="P+9" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4788,9 +4787,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="GND8" gate="1" x="185.42" y="91.44"/>
 <instance part="R10" gate="G$1" x="50.8" y="119.38" rot="R90"/>
 <instance part="GND9" gate="1" x="50.8" y="109.22"/>
-<instance part="P+9" gate="1" x="73.66" y="121.92" smashed="yes" rot="R90">
-<attribute name="VALUE" x="71.12" y="124.46" size="1.778" layer="96" rot="R270"/>
-</instance>
 </instances>
 <busses>
 </busses>
@@ -4913,54 +4909,61 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="P+8" gate="1" pin="+5V"/>
 <wire x1="106.68" y1="106.68" x2="106.68" y2="104.14" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<pinref part="SELECT_BITS" gate="A" pin="CLR"/>
-<wire x1="78.74" y1="121.92" x2="76.2" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="P+9" gate="1" pin="+5V"/>
-</segment>
 </net>
 <net name="N$2" class="0">
 <segment>
-<wire x1="78.74" y1="139.7" x2="76.2" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="GPIO" gate="G$1" pin="38"/>
+<wire x1="78.74" y1="139.7" x2="48.26" y2="139.7" width="0.1524" layer="91"/>
 <pinref part="SELECT_BITS" gate="A" pin="D2"/>
-<pinref part="GPIO" gate="G$1" pin="16"/>
-<wire x1="48.26" y1="167.64" x2="76.2" y2="167.64" width="0.1524" layer="91"/>
-<wire x1="76.2" y1="167.64" x2="76.2" y2="139.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="GPIO" gate="G$1" pin="40"/>
+<wire x1="48.26" y1="137.16" x2="78.74" y2="137.16" width="0.1524" layer="91"/>
+<pinref part="SELECT_BITS" gate="A" pin="D3"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
+<pinref part="GPIO" gate="G$1" pin="35"/>
+<wire x1="33.02" y1="142.24" x2="27.94" y2="142.24" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="142.24" x2="27.94" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="27.94" y1="132.08" x2="48.26" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="48.26" y1="132.08" x2="48.26" y2="134.62" width="0.1524" layer="91"/>
 <pinref part="SELECT_BITS" gate="A" pin="D4"/>
 <wire x1="48.26" y1="134.62" x2="78.74" y2="134.62" width="0.1524" layer="91"/>
-<pinref part="GPIO" gate="G$1" pin="13"/>
-<wire x1="27.94" y1="132.08" x2="27.94" y2="170.18" width="0.1524" layer="91"/>
-<wire x1="27.94" y1="170.18" x2="33.02" y2="170.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
+<wire x1="25.4" y1="144.78" x2="25.4" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="GPIO" gate="G$1" pin="33"/>
+<wire x1="33.02" y1="144.78" x2="25.4" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="SELECT_BITS" gate="A" pin="D5"/>
 <wire x1="78.74" y1="132.08" x2="50.8" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="132.08" x2="50.8" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="129.54" x2="25.4" y2="129.54" width="0.1524" layer="91"/>
-<pinref part="GPIO" gate="G$1" pin="11"/>
-<wire x1="25.4" y1="129.54" x2="25.4" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="172.72" x2="33.02" y2="172.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="GPIO" gate="G$1" pin="36"/>
+<wire x1="48.26" y1="142.24" x2="78.74" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="SELECT_BITS" gate="A" pin="D1"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
+<pinref part="GPIO" gate="G$1" pin="37"/>
+<wire x1="33.02" y1="139.7" x2="30.48" y2="139.7" width="0.1524" layer="91"/>
 <pinref part="SELECT_BITS" gate="A" pin="CLK"/>
+<wire x1="30.48" y1="127" x2="30.48" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="124.46" x2="78.74" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="127" x2="50.8" y2="127" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="127" x2="50.8" y2="124.46" width="0.1524" layer="91"/>
 <pinref part="R10" gate="G$1" pin="2"/>
 <junction x="50.8" y="124.46"/>
-<pinref part="GPIO" gate="G$1" pin="15"/>
-<wire x1="30.48" y1="127" x2="30.48" y2="167.64" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="167.64" x2="33.02" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -5130,21 +5133,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <junction x="190.5" y="88.9"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="N$19" class="0">
 <segment>
-<pinref part="GPIO" gate="G$1" pin="12"/>
-<pinref part="SELECT_BITS" gate="A" pin="D1"/>
-<wire x1="48.26" y1="172.72" x2="78.74" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="172.72" x2="78.74" y2="142.24" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="GPIO" gate="G$1" pin="18"/>
-<wire x1="48.26" y1="165.1" x2="73.66" y2="165.1" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="165.1" x2="73.66" y2="137.16" width="0.1524" layer="91"/>
-<pinref part="SELECT_BITS" gate="A" pin="D3"/>
-<wire x1="73.66" y1="137.16" x2="78.74" y2="137.16" width="0.1524" layer="91"/>
+<pinref part="SELECT_BITS" gate="A" pin="CLR"/>
+<wire x1="78.74" y1="121.92" x2="76.2" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

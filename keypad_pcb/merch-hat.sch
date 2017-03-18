@@ -4711,7 +4711,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
-<part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="P+2" library="supply1" deviceset="+5V" device=""/>
 <part name="P+4" library="supply1" deviceset="+5V" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
@@ -4725,6 +4724,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="R10" library="resistor" deviceset="R-US_" device="0207/10" value="3.3k"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
+<part name="P+9" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4739,8 +4739,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="GPIO" gate="G$1" x="40.64" y="162.56" rot="R180"/>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
 <instance part="GND10" gate="1" x="27.94" y="177.8" rot="R180"/>
-<instance part="P+1" gate="1" x="50.8" y="193.04" smashed="yes">
-<attribute name="VALUE" x="53.34" y="195.58" size="1.778" layer="96" rot="R180"/>
+<instance part="P+1" gate="1" x="58.42" y="195.58" smashed="yes">
+<attribute name="VALUE" x="60.96" y="198.12" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="ROW_MUX" gate="A" x="147.32" y="109.22" rot="R270"/>
 <instance part="COL_DEMUX" gate="A" x="182.88" y="109.22" rot="R90"/>
@@ -4760,7 +4760,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </instance>
 <instance part="GND1" gate="1" x="132.08" y="127" rot="R180"/>
 <instance part="GND2" gate="1" x="73.66" y="129.54" rot="R270"/>
-<instance part="GND3" gate="1" x="73.66" y="121.92" rot="R270"/>
 <instance part="P+2" gate="1" x="144.78" y="127" smashed="yes">
 <attribute name="VALUE" x="147.32" y="129.54" size="1.778" layer="96" rot="R180"/>
 </instance>
@@ -4789,6 +4788,9 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="GND8" gate="1" x="185.42" y="91.44"/>
 <instance part="R10" gate="G$1" x="50.8" y="119.38" rot="R90"/>
 <instance part="GND9" gate="1" x="50.8" y="109.22"/>
+<instance part="P+9" gate="1" x="73.66" y="121.92" smashed="yes" rot="R90">
+<attribute name="VALUE" x="71.12" y="124.46" size="1.778" layer="96" rot="R270"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4803,11 +4805,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="SELECT_BITS" gate="A" pin="D6"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 <wire x1="78.74" y1="129.54" x2="76.2" y2="129.54" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SELECT_BITS" gate="A" pin="CLR"/>
-<pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="78.74" y1="121.92" x2="76.2" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ROW_MUX" gate="P" pin="GND"/>
@@ -4849,7 +4846,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="GPIO" gate="G$1" pin="2"/>
 <pinref part="P+1" gate="1" pin="+5V"/>
 <wire x1="48.26" y1="185.42" x2="50.8" y2="185.42" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="185.42" x2="50.8" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="185.42" x2="58.42" y2="193.04" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
@@ -4915,6 +4912,11 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="ROW_MUX" gate="P" pin="VCC"/>
 <pinref part="P+8" gate="1" pin="+5V"/>
 <wire x1="106.68" y1="106.68" x2="106.68" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="SELECT_BITS" gate="A" pin="CLR"/>
+<wire x1="78.74" y1="121.92" x2="76.2" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="P+9" gate="1" pin="+5V"/>
 </segment>
 </net>
 <net name="N$2" class="0">

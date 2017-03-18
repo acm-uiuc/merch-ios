@@ -126,4 +126,6 @@ pip-selfcheck.json
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
-# Files
+# eagle
+*.b#*
+*.s#*
