@@ -10,83 +10,74 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var passcode = ""
-    
-//    var valid = true {
-//        didSet {
-//            vendButton.isEnabled = valid
-//        }
-//    }
-    
-    @IBOutlet weak var errorLabel: UILabel!
-    
+    // MARK: - Outlets
     @IBOutlet var circleViews: [MUICircleView]!
     @IBOutlet var keypadButtons: [MUIButton]!
-    
-    @IBOutlet weak var vendButton: MUIButton!
-    
-    let buttonColor = UIColor(red: 90/255, green: 200/255, blue: 219/255, alpha: 1.0)
-    let buttonHighlightColor = UIColor(red: 90/255, green: 200/255, blue: 219/255, alpha: 0.1)
 
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+
+    @IBOutlet weak var errorLabel: MUIHidingLabel!
+
+    // MARK: - Variables
+    var passcode = "" {
+        /*  Precondition: the passcode should never be modified by more than one
+                character at a time except when being cleared
+         */
+        didSet {
+            let count = passcode.characters.count
+            switch count {
+            case 0:
+                clearButton.isEnabled = false
+                deleteButton.isEnabled = false
+                let _ = keypadButtons.map { $0.isEnabled = true }
+                
+            case 1..<8:
+                clearButton.isEnabled = true
+                deleteButton.isEnabled = true
+
+            case 8:
+                clearButton.isEnabled = false
+                deleteButton.isEnabled = false
+                let _ = keypadButtons.map { $0.isEnabled = false }
+                // Attempt Login
+            default:
+                assertionFailure("passcode length should never exceed 8 characters")
+            }
+            
+        }
+    }
+
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for button in keypadButtons {
-            stylize(button: button)
+        passcode = ""
+        circleViews = circleViews.sorted { return $0.tag < $1.tag }
+    }
+    
+    // MARK: - Actions
+    @IBAction func didSelectKeypadButton(_ button: UIButton) {
+        guard let number = button.titleLabel?.text else {
+            assertionFailure("Incorrect storyboard setup, please check that every keypad button has a number")
+            return
         }
-        
-//        stylize(button: vendButton)
-
-        for circleView in circleViews {
-            stylize(circleView: circleView)
-        }
-        
-        errorLabel.alpha = 0
+        passcode += number
+        circleViews[passcode.characters.count - 1].filled = true
     }
     
-    func stylize(button: MUIButton) {
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 32
-        button.layer.borderWidth = 2
-        button.layer.borderColor = buttonColor.cgColor
-        button.setTitleColor(buttonColor, for: .normal)
-        button.defaultBackgroundColor = nil
-        button.highlightedBackgroundColor = buttonHighlightColor
-    }
-    
-    func stylize(circleView: MUICircleView) {
-        circleView.layer.masksToBounds = true
-        circleView.layer.cornerRadius = 8
-        circleView.layer.borderWidth = 2
-        circleView.layer.borderColor = buttonColor.cgColor
-        circleView.filledColor = buttonHighlightColor
-        circleView.unfilledColor = nil
+    @IBAction func didSelectClear(_ sender: UIButton) {
+        passcode = ""
+        let _ = circleViews.map { $0.filled = false }
     }
 
-    func displayError() {
-//        valid = false
-        UIView.animate(withDuration: 0.25) {
-            self.errorLabel.alpha = 1
-        }
+    @IBAction func didSelectDelete(_ sender: UIButton) {
+        passcode.remove(at: passcode.index(before: passcode.endIndex))
+        circleViews[passcode.characters.count].filled = false
     }
     
-    func hideError() {
-//        valid = true
-        UIView.animate(withDuration: 0.25) {
-            self.errorLabel.alpha = 0
-        }
-    }
+    // MARK: - Login
     
-    @IBAction func didSelectKeyPadButton(_ button: MUIButton) {
-        
-    }
-
-    func validate() {
-
-    }
     
-    @IBAction func vend() {
-
-    }
+    
 }
 
