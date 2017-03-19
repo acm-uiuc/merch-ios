@@ -640,6 +640,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="circleContainerView" destination="hRd-sA-UMP" id="Zgq-eS-GT5"/>
                         <outlet property="clearButton" destination="CQC-JD-bFj" id="Ot2-hD-xmj"/>
                         <outlet property="deleteButton" destination="s1t-Zg-O0f" id="lqB-fM-NEQ"/>
                         <outlet property="errorLabel" destination="NJu-gj-0qg" id="8H5-y7-eF0"/>

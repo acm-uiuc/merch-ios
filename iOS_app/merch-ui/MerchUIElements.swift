@@ -103,13 +103,13 @@ import UIKit
     }
     
     private func fill() {
-        UIView.animate(withDuration: 0.25) { 
+        UIView.animate(withDuration: 0.125) {
             self.backgroundColor = self.filledColor
         }
     }
     
     private func empty() {
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.125) {
             self.backgroundColor = self.emptyColor
         }
     }

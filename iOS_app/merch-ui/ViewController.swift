@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet weak var circleContainerView: UIView!
     @IBOutlet var circleViews: [MUICircleView]!
     @IBOutlet var keypadButtons: [MUIButton]!
 
@@ -21,7 +22,7 @@ class ViewController: UIViewController {
 
     // MARK: - Variables
     var passcode = "" {
-        /*  Precondition: the passcode should never be modified by more than one
+        /*  Precondition: the passcode will never be modified by more than one
                 character at a time except when being cleared
          */
         didSet {
@@ -40,7 +41,9 @@ class ViewController: UIViewController {
                 clearButton.isEnabled = false
                 deleteButton.isEnabled = false
                 let _ = keypadButtons.map { $0.isEnabled = false }
-                // Attempt Login
+                
+                attemptLogin()
+                
             default:
                 assertionFailure("passcode length should never exceed 8 characters")
             }
@@ -51,8 +54,14 @@ class ViewController: UIViewController {
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        // ensures all the buttons are in the correct enabled state
         passcode = ""
+
+        // ensures all the circleViews are in order, the tags in storboard must
+        //  be assending for this to work
         circleViews = circleViews.sorted { return $0.tag < $1.tag }
+        
+        // TODO: clear UserModel
     }
     
     // MARK: - Actions
@@ -65,19 +74,40 @@ class ViewController: UIViewController {
         circleViews[passcode.characters.count - 1].filled = true
     }
     
-    @IBAction func didSelectClear(_ sender: UIButton) {
+    @IBAction func didSelectClear(_ sender: Any?) {
         passcode = ""
         let _ = circleViews.map { $0.filled = false }
     }
 
-    @IBAction func didSelectDelete(_ sender: UIButton) {
+    @IBAction func didSelectDelete(_ sender: Any?) {
         passcode.remove(at: passcode.index(before: passcode.endIndex))
         circleViews[passcode.characters.count].filled = false
     }
     
     // MARK: - Login
+    func attemptLogin() {
+        // TOOD: Attempt login using groot endpoint
+        loginFailed()
+    }
     
+    func loginSucceeded() {
+        // TODO: transition intoVC
+    }
     
-    
+    func loginFailed() {
+        CATransaction.begin()
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = CGPoint(x: circleContainerView.center.x - 10, y: circleContainerView.center.y)
+        animation.toValue = CGPoint(x: circleContainerView.center.x + 10, y: circleContainerView.center.y)
+        CATransaction.setCompletionBlock {
+            self.didSelectClear(nil)
+        }
+        circleContainerView.layer.add(animation, forKey: "position")
+        CATransaction.commit()
+    }
+
 }
 
