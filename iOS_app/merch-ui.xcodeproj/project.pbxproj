@@ -9,25 +9,29 @@
 /* Begin PBXBuildFile section */
 		95808C5D1E7F369400C3E61E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95808C5B1E7F369400C3E61E /* APIManager.swift */; };
 		95808C5E1E7F369400C3E61E /* APISecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95808C5C1E7F369400C3E61E /* APISecrets.swift */; };
+		95808C601E7F3D1200C3E61E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95808C5F1E7F3D1200C3E61E /* UserModel.swift */; };
 		959C7D2D1E71DB6D00BE8958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */; };
-		959C7D2F1E71DB6D00BE8958 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C7D2E1E71DB6D00BE8958 /* ViewController.swift */; };
-		959C7D321E71DB6D00BE8958 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D301E71DB6D00BE8958 /* Main.storyboard */; };
 		959C7D341E71DB6D00BE8958 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D331E71DB6D00BE8958 /* Assets.xcassets */; };
-		959C7D371E71DB6D00BE8958 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */; };
-		95ABA2B21E7334B40000703D /* MerchUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABA2B11E7334B40000703D /* MerchUIElements.swift */; };
+		95A4DB0C1E809849000717FD /* MerchUIElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A4DB071E809849000717FD /* MerchUIElements.swift */; };
+		95A4DB0D1E809849000717FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A4DB081E809849000717FD /* ViewController.swift */; };
+		95A4DB0E1E809849000717FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A4DB0A1E809849000717FD /* LaunchScreen.storyboard */; };
+		95A4DB0F1E809849000717FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A4DB0B1E809849000717FD /* Main.storyboard */; };
+		95A4DB111E809856000717FD /* MerchUIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A4DB101E809856000717FD /* MerchUIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		95808C5B1E7F369400C3E61E /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		95808C5C1E7F369400C3E61E /* APISecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISecrets.swift; sourceTree = "<group>"; };
+		95808C5F1E7F3D1200C3E61E /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		959C7D291E71DB6D00BE8958 /* merch-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "merch-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		959C7D2E1E71DB6D00BE8958 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		959C7D311E71DB6D00BE8958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		959C7D331E71DB6D00BE8958 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		959C7D361E71DB6D00BE8958 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		959C7D381E71DB6D00BE8958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95ABA2B11E7334B40000703D /* MerchUIElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchUIElements.swift; sourceTree = "<group>"; };
+		95A4DB071E809849000717FD /* MerchUIElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchUIElements.swift; sourceTree = "<group>"; };
+		95A4DB081E809849000717FD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		95A4DB0A1E809849000717FD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		95A4DB0B1E809849000717FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		95A4DB101E809856000717FD /* MerchUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchUIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +50,7 @@
 			children = (
 				95808C5B1E7F369400C3E61E /* APIManager.swift */,
 				95808C5C1E7F369400C3E61E /* APISecrets.swift */,
+				95808C5F1E7F3D1200C3E61E /* UserModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -69,16 +74,33 @@
 		959C7D2B1E71DB6D00BE8958 /* merch-ui */ = {
 			isa = PBXGroup;
 			children = (
-				95808C5A1E7F369400C3E61E /* API */,
 				959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */,
-				959C7D2E1E71DB6D00BE8958 /* ViewController.swift */,
-				959C7D301E71DB6D00BE8958 /* Main.storyboard */,
-				95ABA2B11E7334B40000703D /* MerchUIElements.swift */,
+				95A4DB061E809849000717FD /* UI */,
+				95A4DB091E809849000717FD /* Storyboards */,
+				95808C5A1E7F369400C3E61E /* API */,
 				959C7D331E71DB6D00BE8958 /* Assets.xcassets */,
-				959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */,
 				959C7D381E71DB6D00BE8958 /* Info.plist */,
 			);
 			path = "merch-ui";
+			sourceTree = "<group>";
+		};
+		95A4DB061E809849000717FD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				95A4DB071E809849000717FD /* MerchUIElements.swift */,
+				95A4DB081E809849000717FD /* ViewController.swift */,
+				95A4DB101E809856000717FD /* MerchUIConstants.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		95A4DB091E809849000717FD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				95A4DB0A1E809849000717FD /* LaunchScreen.storyboard */,
+				95A4DB0B1E809849000717FD /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +163,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				959C7D371E71DB6D00BE8958 /* LaunchScreen.storyboard in Resources */,
+				95A4DB0F1E809849000717FD /* Main.storyboard in Resources */,
 				959C7D341E71DB6D00BE8958 /* Assets.xcassets in Resources */,
-				959C7D321E71DB6D00BE8958 /* Main.storyboard in Resources */,
+				95A4DB0E1E809849000717FD /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,34 +176,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A4DB0D1E809849000717FD /* ViewController.swift in Sources */,
 				95808C5D1E7F369400C3E61E /* APIManager.swift in Sources */,
-				959C7D2F1E71DB6D00BE8958 /* ViewController.swift in Sources */,
 				95808C5E1E7F369400C3E61E /* APISecrets.swift in Sources */,
+				95A4DB0C1E809849000717FD /* MerchUIElements.swift in Sources */,
+				95A4DB111E809856000717FD /* MerchUIConstants.swift in Sources */,
 				959C7D2D1E71DB6D00BE8958 /* AppDelegate.swift in Sources */,
-				95ABA2B21E7334B40000703D /* MerchUIElements.swift in Sources */,
+				95808C601E7F3D1200C3E61E /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		959C7D301E71DB6D00BE8958 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				959C7D311E71DB6D00BE8958 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		959C7D351E71DB6D00BE8958 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				959C7D361E71DB6D00BE8958 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		959C7D391E71DB6D00BE8958 /* Debug */ = {
@@ -281,6 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 8VNQTQM2L6;
 				INFOPLIST_FILE = "merch-ui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -296,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 8VNQTQM2L6;
 				INFOPLIST_FILE = "merch-ui/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
