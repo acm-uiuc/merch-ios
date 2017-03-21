@@ -11,14 +11,14 @@ import UIKit
 class ViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var circleContainerView: UIView!
-    @IBOutlet var circleViews: [MUICircleView]!
-    @IBOutlet var keypadButtons: [MUIButton]!
+    @IBOutlet weak var passcodeBubblesContainerView: UIView!
+    @IBOutlet var passcodeBubbles: [UIImageView]!
+    @IBOutlet var keypadButtons: [UIButton]!
 
-    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
 
-    @IBOutlet weak var errorLabel: MUIHidingLabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
 
     // MARK: - Variables
     var passcode = "" {
@@ -29,23 +29,31 @@ class ViewController: UIViewController {
             let count = passcode.characters.count
             switch count {
             case 0:
-                clearButton.isEnabled = false
                 deleteButton.isEnabled = false
-                let _ = keypadButtons.map { $0.isEnabled = true }
                 
-            case 1..<8:
-                clearButton.isEnabled = true
+                titleLabel.alpha = 1.0
+                let _ = keypadButtons.map { $0.isEnabled = true }
+                let _ = passcodeBubbles.map { $0.alpha = 1.0 }
+                
+            case 1..<passcodeBubbles.count:
                 deleteButton.isEnabled = true
-
-            case 8:
-                clearButton.isEnabled = false
+                
+                change(detailLabel, toText: nil, animated: true)
+                
+            case passcodeBubbles.count:
                 deleteButton.isEnabled = false
+                
+                titleLabel.alpha = 0.3
                 let _ = keypadButtons.map { $0.isEnabled = false }
+                let _ = passcodeBubbles.map { $0.alpha = 0.3 }
+                
+
+                change(detailLabel, toColor: MUIConstants.Colors.secondary, animated: false)
+                change(detailLabel, toText: "Authenticating", animated: true)
                 
                 attemptLogin()
-                
             default:
-                assertionFailure("passcode length should never exceed 8 characters")
+                assertionFailure("passcode length should never exceed `passcodeBubbles.count` number of characters")
             }
             
         }
@@ -57,9 +65,9 @@ class ViewController: UIViewController {
         // ensures all the buttons are in the correct enabled state
         passcode = ""
 
-        // ensures all the circleViews are in order, the tags in storboard must
-        //  be assending for this to work
-        circleViews = circleViews.sorted { return $0.tag < $1.tag }
+        // ensures all the passcodeBubbles are in order, the tags in storboard 
+        //  must be assending for this to work
+        passcodeBubbles = passcodeBubbles.sorted { return $0.tag < $1.tag }
         
         // TODO: clear UserModel
     }
@@ -71,17 +79,38 @@ class ViewController: UIViewController {
             return
         }
         passcode += number
-        circleViews[passcode.characters.count - 1].filled = true
+        passcodeBubbles[passcode.characters.count - 1].isHighlighted = true
     }
-    
-    @IBAction func didSelectClear(_ sender: Any?) {
-        passcode = ""
-        let _ = circleViews.map { $0.filled = false }
-    }
+
 
     @IBAction func didSelectDelete(_ sender: Any?) {
         passcode.remove(at: passcode.index(before: passcode.endIndex))
-        circleViews[passcode.characters.count].filled = false
+        passcodeBubbles[passcode.characters.count].isHighlighted = false
+    }
+    
+    // MARK: - Detail Label
+    func change(_ label: UILabel, toColor newColor: UIColor, animated: Bool) {
+        guard label.textColor != newColor else { return }
+        
+        if animated {
+            UIView.animate(withDuration: 0.25) {
+                label.textColor = newColor
+            }
+        } else {
+            label.textColor = newColor
+        }
+    }
+    
+    func change(_ label: UILabel, toText newText: String?, animated: Bool) {
+        guard label.text != newText else { return }
+        
+        if animated {
+            UIView.transition(with: label, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                label.text = newText
+            }, completion: nil)
+        } else {
+            label.text = newText
+        }
     }
     
     // MARK: - Login
@@ -95,18 +124,16 @@ class ViewController: UIViewController {
     }
     
     func loginFailed() {
-        CATransaction.begin()
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.07
-        animation.repeatCount = 2
-        animation.autoreverses = true
-        animation.fromValue = CGPoint(x: circleContainerView.center.x - 10, y: circleContainerView.center.y)
-        animation.toValue = CGPoint(x: circleContainerView.center.x + 10, y: circleContainerView.center.y)
-        CATransaction.setCompletionBlock {
-            self.didSelectClear(nil)
+        change(detailLabel, toColor: MUIConstants.Colors.error, animated: true)
+        change(detailLabel, toText: "Incorrect Passcode", animated: true)
+        
+        passcodeBubblesContainerView.transform = CGAffineTransform(translationX: 80, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
+            self.passcodeBubblesContainerView.transform = .identity
+        }) { (_) in
+            self.passcode = ""
+            let _ = self.passcodeBubbles.map { $0.isHighlighted = false }
         }
-        circleContainerView.layer.add(animation, forKey: "position")
-        CATransaction.commit()
     }
 
 }
