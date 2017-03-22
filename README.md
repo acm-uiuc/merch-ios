@@ -1,5 +1,7 @@
 # Merch Point of Sale iOS App
 
+[![Join the chat at https://gitter.im/acm-uiuc/merch-development](https://badges.gitter.im/acm-uiuc/merch-development.svg)](https://gitter.im/acm-uiuc/merch-development?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Getting involved
 
 We encourage you to participate in this open source project. We love Pull Requests, ideas, code reviews or any kind of positive contribution. GitHub issues are enabled on this repository, if you spot a bug please create a new issue.
