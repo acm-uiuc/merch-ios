@@ -1,15 +1,22 @@
-# SIGBot-FA2017
+# The iOS App for the Merch Point of Sale
 
+## Getting involved
 
-Possible information sources:
-[http://bajavending.com/Manual-de-Operacion-BevMax.pdf](http://bajavending.com/Manual-de-Operacion-BevMax.pdf)
-* Has the right picture of the main controller board, no programming information though
+We encourage you to participate in this open source project. We love Pull Requests, ideas, code reviews or any kind of positive contribution. GitHub issues are enabled on this repository, if you spot a bug please create a new issue.
 
+Don't know where to start? Check issues for bugs we haven't gotten around to squashing, features we still need to implement and more. The team is active on *Gitter* and we would love to answer any questions you have.
 
-[The LCD datasheet](https://media.digikey.com/pdf/Data%20Sheets/Noritake%20PDFs/GU140X16G-7003.pdf)
+## Requirements
 
+XCode 8
+iOS 10.2 SDK
+An iPad running iOS 10.0 or newer
+A Groot Client Key (more on this in API)
 
-[LCD Code Library](https://www.noritake-elec.com/support/design-resources/code-libraries/code-library#gu7000)
-has some useful info about what commands are sent
+A code signing key from Apple is required to deploy apps to a device. Without a developer key, the app can only be installed on the iPhone/iPad Simulator.
 
-[LCD Command List](https://www.noritake-elec.com/support/design-resources/support-guide/gu-7000-command-description)
+## API
+
+The project runs on ACM@UIUC Groot services, with routes specific to Merch maintained in https://github.com/acm-uiuc/groot-merch-service.
+
+In order to access these services you will need a client key, which you can ask for on the Groot Gitter.
