@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,19 +118,35 @@ class LoginViewController: UIViewController {
     
     // MARK: - Login
     func attemptLogin() {
-        // TOOD: Attempt login using groot endpoint
-//        loginFailed()
-        loginSucceeded()
+        let login = APIRequest.getUser(passcode: passcode, success: { (json) in
+            UserModel.load(json: json)
+            
+            if UserModel.shared != nil {
+                DispatchQueue.main.async {
+                    self.loginSucceeded()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.loginFailed(error: "Internal error; unable parse returned data.")
+                }
+            }
+            
+        }) { (error) in
+            DispatchQueue.main.async {
+                self.loginFailed(error: error)
+            }
+        }
+        
+        APIManager.performRequest(request: login, withAuthorization: nil)
     }
     
     func loginSucceeded() {
-        UserModel.shared = UserModel()
         performSegue(withIdentifier: "PresentItems", sender: nil)
     }
     
-    func loginFailed() {
+    func loginFailed(error: String) {
         change(detailLabel, toColor: UIConstants.Colors.error, animated: true)
-        change(detailLabel, toText: "Incorrect Passcode", animated: true)
+        change(detailLabel, toText: error, animated: true)
         
         passcodeBubblesContainerView.transform = CGAffineTransform(translationX: 80, y: 0)
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {

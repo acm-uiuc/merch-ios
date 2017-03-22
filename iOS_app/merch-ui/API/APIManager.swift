@@ -37,7 +37,7 @@ class APIManager {
                     return
                 }
                 
-                request.error?("Unknown error; unable parse returned data.")
+                request.error?("Internal error; unable parse returned data.")
                 return
             }
             
@@ -69,9 +69,9 @@ struct APIRequest {
     func urlRequest(withAuthorization authorization: UserModel?) -> URLRequest {
         var queryParams = self.queryParams
         
-        if let netID = authorization?.netID, let token = authorization?.token {
+        if let netID = authorization?.netID {
             queryParams["netID"] = netID
-            queryParams["token"] = token
+//            queryParams["token"] = token
         }
         
         let query = queryParams.map { return "\($0)=\($1)" }.joined(separator: "&")
@@ -102,6 +102,9 @@ struct APIRequest {
         self.requestType = requestType
     }
     
+    static func getUser(passcode: String, success: SuccessBlock?, error: ErrorBlock?) -> APIRequest {
+        return APIRequest(endpoint: "/users/pins/\(passcode)", queryParams: [:], success: success, error: error, requestType: .GET)
+    }
     
     static func getItems(success: SuccessBlock?, error: ErrorBlock?) -> APIRequest {
         return APIRequest(endpoint: "/items", queryParams: [:], success: success, error: error, requestType: .GET)

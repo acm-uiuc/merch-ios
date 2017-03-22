@@ -10,20 +10,20 @@ import UIKit
 
 class ItemsViewController: UIViewController, UITableViewDelegate {
 
-    
-    let updateItems = APIRequest.getItems(success: { (json) in
-        ItemsDataSource.shared.clear()
-        ItemsDataSource.shared.populate(models: json)
-    }) { (error) in
-        print(error)
-    }
-    
     // MARK: - Outlets
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Variables
+    let updateItems = APIRequest.getItems(success: { (json) in
+        ItemsDataSource.shared.clear()
+        ItemsDataSource.shared.populate(models: json)
+    }) { (error) in
+        print(error)
+    }
     
     // MARK: - UIViewController
     override func viewDidLoad() {

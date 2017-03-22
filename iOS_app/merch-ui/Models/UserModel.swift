@@ -11,19 +11,27 @@ import Foundation
 class UserModel {
     static var shared: UserModel?
 
-    private init() { }
-    
-    var netID = ""
-    var token = ""
-    
-    func reset() {
-        netID = ""
-        token = ""
+    let id: Int
+    let netID: String
+    let pin: Int
+    var balance: Int
+
+    private init(id: Int, netID: String, pin: Int, balance: Int) {
+        self.id = id
+        self.netID = netID
+        self.pin = pin
+        self.balance = balance
     }
     
     static func load(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let netID = json["netid"] as? String,
+            let pin = json["pin"] as? Int,
+            let balance = json["balance"] as? Int else {
+            shared = nil
+            return
+        }
         
-        
-        // TODO: - fill me
+        shared = UserModel(id: id, netID: netID, pin: pin, balance: balance)
     }
 }

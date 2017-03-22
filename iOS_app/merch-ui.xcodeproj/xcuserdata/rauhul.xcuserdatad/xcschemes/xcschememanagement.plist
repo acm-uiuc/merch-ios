@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>swifty-json.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>959C7D281E71DB6D00BE8958</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95C66D3E1E8211EA005152A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
