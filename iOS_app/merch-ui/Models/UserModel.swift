@@ -11,6 +11,8 @@ import Foundation
 class UserModel {
     static var shared: UserModel?
 
+    private init() { }
+    
     var netID = ""
     var token = ""
     
@@ -19,7 +21,9 @@ class UserModel {
         token = ""
     }
     
-    func load(json: [String: Any]) {
+    static func load(json: [String: Any]) {
+        
+        
         // TODO: - fill me
     }
 }

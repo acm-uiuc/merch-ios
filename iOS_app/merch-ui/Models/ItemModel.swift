@@ -18,17 +18,18 @@ class ItemModel {
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
-            let price = 
-            let name =
-            let imageURL =
-            let quantity =
+            let price = json["id"] as? Int,
+            let name = json["name"] as? String,
+            let imageURL = json["image"] as? String,
+            let quantity = json["quantity"] as? Int else { return nil }
         
+        self.id = id
+        self.price = price
+        self.name = name
+        self.imageURL = imageURL
+        self.quantity = quantity
         
-        
-        else { return nil }
-        
-        
-        
+        // TODO: Get image
     }
     
     
