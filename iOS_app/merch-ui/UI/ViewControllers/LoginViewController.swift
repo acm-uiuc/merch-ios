@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
         
         let _ = passcodeBubbles.map { $0.isHighlighted = false }
         change(detailLabel, toText: nil, animated: false)
-        UserModel.shared.reset()
+        UserModel.shared = nil
     }
     
     // MARK: - Actions
@@ -124,6 +124,7 @@ class LoginViewController: UIViewController {
     }
     
     func loginSucceeded() {
+        UserModel.shared = UserModel()
         performSegue(withIdentifier: "PresentItems", sender: nil)
     }
     

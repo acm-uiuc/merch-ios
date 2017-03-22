@@ -9,9 +9,22 @@
 import UIKit
 
 class ItemsViewController: UIViewController, UITableViewDelegate {
-    // MARK: - Outlets
-    @IBOutlet weak var tableView: UITableView!
 
+    
+    let updateItems = APIRequest.getItems(success: { (json) in
+        ItemsDataSource.shared.clear()
+        ItemsDataSource.shared.populate(models: json)
+    }) { (error) in
+        print(error)
+    }
+    
+    // MARK: - Outlets
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +32,27 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = UserModel.shared {
+            APIManager.performRequest(request: updateItems, withAuthorization: user)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if UserModel.shared == nil {
+            let alert = UIAlertController(title: "Internal Error", message: "Unable to load user", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+                self.logout()
+            })
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
     // MARK: - Actions
     @IBAction func logout() {
         dismiss(animated: true, completion: nil)

@@ -8,16 +8,46 @@
 
 import Foundation
 
-public typealias SuccessBlock = (Void) -> Void
+public typealias SuccessBlock = (_ json: [String: Any]) -> Void
 public typealias ErrorBlock = (_ error: String) -> Void
 
 class APIManager {
-    
-    
-    
+    static func performRequest(request: APIRequest, withAuthorization authorization: UserModel?) {
+        let urlRequest = request.urlRequest(withAuthorization: authorization)
+        
+        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                request.error?(error.localizedDescription)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, let data = data {
+                if response.statusCode != 200 {
+                    request.error?(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))
+                    return
+                }
+                
+                if let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any] {
+                    if let error = json["error"] as? String {
+                        request.error?(error)
+                        return
+                    }
+                
+                    request.success?(json)
+                    return
+                }
+                
+                request.error?("Unknown error; unable parse returned data.")
+                return
+            }
+            
+            assertionFailure("Both error and response should not be nil")
+        }
+        task.resume()
+    }
 }
 
-struct APIEndpoint {
+struct APIRequest {
     enum RequestType: String {
         case GET
         case POST
@@ -25,11 +55,10 @@ struct APIEndpoint {
         case PUT
     }
     
-    static let baseURL = "http://api.acm.illinois.edu"
+    static let baseURL = "https://api.acm.illinois.edu/merch"
     
     var endpoint = ""
     var queryParams = [String: String]()
-//    var data: [String: Any]?
     
     var success: SuccessBlock?
     var error: ErrorBlock?
@@ -47,7 +76,7 @@ struct APIEndpoint {
         
         let query = queryParams.map { return "\($0)=\($1)" }.joined(separator: "&")
         
-        var urlString = APIEndpoint.baseURL + endpoint
+        var urlString = APIRequest.baseURL + endpoint
         
         if query != "" {
             urlString += "?" + query
@@ -64,12 +93,18 @@ struct APIEndpoint {
         return request
     }
     
-    
     // MARK: - Endpoints
-//    private init() { }
+    private init(endpoint: String, queryParams: [String: String], success: SuccessBlock?, error: ErrorBlock?, requestType: APIRequest.RequestType) {
+        self.endpoint = endpoint
+        self.queryParams = queryParams
+        self.success = success
+        self.error = error
+        self.requestType = requestType
+    }
     
-//    func login() -> APIEndpoint {
-////        return APIEndpoint(endpoint: "", queryParams: <#T##[String : String]#>, success: <#T##SuccessBlock?##SuccessBlock?##(Void) -> Void#>, error: <#T##ErrorBlock?##ErrorBlock?##(String) -> Void#>, requestType: .GET)
-//    }
+    
+    static func getItems(success: SuccessBlock?, error: ErrorBlock?) -> APIRequest {
+        return APIRequest(endpoint: "/items", queryParams: [:], success: success, error: error, requestType: .GET)
+    }
     
 }

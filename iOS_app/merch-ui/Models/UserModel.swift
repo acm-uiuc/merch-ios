@@ -9,12 +9,10 @@
 import Foundation
 
 class UserModel {
-    static let shared = UserModel()
-    
+    static var shared: UserModel?
+
     var netID = ""
     var token = ""
-    
-    private init() { }
     
     func reset() {
         netID = ""

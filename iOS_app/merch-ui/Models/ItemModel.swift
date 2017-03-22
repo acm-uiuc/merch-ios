@@ -10,7 +10,24 @@ import Foundation
 
 class ItemModel {
     
-    init(json: [String: Any]) {
+    let id: Int
+    let price: Int
+    let name: String
+    let imageURL: String
+    let quantity: Int
+    
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? Int,
+            let price = 
+            let name =
+            let imageURL =
+            let quantity =
+        
+        
+        
+        else { return nil }
+        
+        
         
     }
     
