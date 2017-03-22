@@ -1,4 +1,4 @@
-# The iOS App for the Merch Point of Sale
+# Merch Point of Sale iOS App
 
 ## Getting involved
 
