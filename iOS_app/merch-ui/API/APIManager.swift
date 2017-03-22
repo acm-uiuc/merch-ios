@@ -68,8 +68,8 @@ struct APIEndpoint {
     // MARK: - Endpoints
 //    private init() { }
     
-    func login() -> APIEndpoint {
-        return APIEndpoint(endpoint: "", queryParams: <#T##[String : String]#>, success: <#T##SuccessBlock?##SuccessBlock?##(Void) -> Void#>, error: <#T##ErrorBlock?##ErrorBlock?##(String) -> Void#>, requestType: .GET)
-    }
+//    func login() -> APIEndpoint {
+////        return APIEndpoint(endpoint: "", queryParams: <#T##[String : String]#>, success: <#T##SuccessBlock?##SuccessBlock?##(Void) -> Void#>, error: <#T##ErrorBlock?##ErrorBlock?##(String) -> Void#>, requestType: .GET)
+//    }
     
 }

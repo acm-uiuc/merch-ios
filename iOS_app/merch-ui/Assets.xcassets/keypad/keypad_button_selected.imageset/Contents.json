@@ -2,7 +2,21 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "rectangleCopy2.pdf"
+      "filename" : "rectangleCopy2.pdf",
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "tile",
+          "width" : 1,
+          "height" : 1
+        },
+        "cap-insets" : {
+          "bottom" : 8,
+          "top" : 9,
+          "right" : 9,
+          "left" : 8
+        }
+      }
     }
   ],
   "info" : {

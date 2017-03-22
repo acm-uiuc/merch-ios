@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  merch-ui
 //
 //  Created by Rauhul Varma on 3/9/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var passcodeBubblesContainerView: UIView!
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
                 titleLabel.alpha = 1.0
                 let _ = keypadButtons.map { $0.isEnabled = true }
                 let _ = passcodeBubbles.map { $0.alpha = 1.0 }
-                
+
             case 1..<passcodeBubbles.count:
                 deleteButton.isEnabled = true
                 
@@ -47,29 +47,32 @@ class ViewController: UIViewController {
                 let _ = keypadButtons.map { $0.isEnabled = false }
                 let _ = passcodeBubbles.map { $0.alpha = 0.3 }
                 
-
-                change(detailLabel, toColor: MUIConstants.Colors.secondary, animated: false)
+                change(detailLabel, toColor: UIConstants.Colors.secondary, animated: false)
                 change(detailLabel, toText: "Authenticating", animated: true)
                 
                 attemptLogin()
             default:
                 assertionFailure("passcode length should never exceed `passcodeBubbles.count` number of characters")
             }
-            
         }
     }
 
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        // ensures all the buttons are in the correct enabled state
-        passcode = ""
-
-        // ensures all the passcodeBubbles are in order, the tags in storboard 
+        // ensures all the passcodeBubbles are in order, the tags in storboard
         //  must be assending for this to work
         passcodeBubbles = passcodeBubbles.sorted { return $0.tag < $1.tag }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // reset all UI to default values and clear UserModel
+        passcode = ""
         
-        // TODO: clear UserModel
+        let _ = passcodeBubbles.map { $0.isHighlighted = false }
+        change(detailLabel, toText: nil, animated: false)
+        UserModel.shared.reset()
     }
     
     // MARK: - Actions
@@ -116,15 +119,16 @@ class ViewController: UIViewController {
     // MARK: - Login
     func attemptLogin() {
         // TOOD: Attempt login using groot endpoint
-        loginFailed()
+//        loginFailed()
+        loginSucceeded()
     }
     
     func loginSucceeded() {
-        // TODO: transition intoVC
+        performSegue(withIdentifier: "PresentItems", sender: nil)
     }
     
     func loginFailed() {
-        change(detailLabel, toColor: MUIConstants.Colors.error, animated: true)
+        change(detailLabel, toColor: UIConstants.Colors.error, animated: true)
         change(detailLabel, toText: "Incorrect Passcode", animated: true)
         
         passcodeBubblesContainerView.transform = CGAffineTransform(translationX: 80, y: 0)
@@ -135,6 +139,5 @@ class ViewController: UIViewController {
             let _ = self.passcodeBubbles.map { $0.isHighlighted = false }
         }
     }
-
 }
 
