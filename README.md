@@ -9,8 +9,11 @@ Don't know where to start? Check issues for bugs we haven't gotten around to squ
 ## Requirements
 
 XCode 8
+
 iOS 10.2 SDK
+
 An iPad running iOS 10.0 or newer
+
 A Groot Client Key (more on this in API)
 
 A code signing key from Apple is required to deploy apps to a device. Without a developer key, the app can only be installed on the iPhone/iPad Simulator.
