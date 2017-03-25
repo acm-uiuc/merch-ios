@@ -77,6 +77,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func didSelectKeypadButton(_ button: UIButton) {
+        guard passcode.characters.count < passcodeBubbles.count else { return }
         guard let number = button.titleLabel?.text else {
             assertionFailure("Incorrect storyboard setup, please check that every keypad button has a number")
             return
@@ -87,6 +88,7 @@ class LoginViewController: UIViewController {
 
 
     @IBAction func didSelectDelete(_ sender: Any?) {
+        guard passcode.characters.count > 0 else { return }
         passcode.remove(at: passcode.index(before: passcode.endIndex))
         passcodeBubbles[passcode.characters.count].isHighlighted = false
     }
@@ -118,8 +120,10 @@ class LoginViewController: UIViewController {
     
     // MARK: - Login
     func attemptLogin() {
-        let login = APIRequest.getUser(passcode: passcode, success: { (json) in
-            UserModel.load(json: json)
+        APIRequest.getUser(passcode: passcode, success: { (json) in
+            if let model = json as? [String: Any] {
+                UserModel.load(json: model)
+            }
             
             if UserModel.shared != nil {
                 DispatchQueue.main.async {
@@ -135,9 +139,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 self.loginFailed(error: error)
             }
-        }
-        
-        APIManager.performRequest(request: login, withAuthorization: nil)
+        }.perform(withAuthorization: nil)
     }
     
     func loginSucceeded() {

@@ -14,6 +14,8 @@ class ItemTableViewCell: UITableViewCell {
     static let highlightedImage = #imageLiteral(resourceName: "keypad_button_highlighted")
     static let disabledImage    = #imageLiteral(resourceName: "keypad_button_disabled")
     
+    static let defaultIconImage = #imageLiteral(resourceName: "keypad_delete_selected")
+    
     // MARK: - Outlets
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet private weak var backgroundImageView: UIImageView!
@@ -21,7 +23,10 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
-    @IBOutlet weak var hitBox: UIView!
+    @IBOutlet private weak var hitBox: UIView!
+    
+    // MARK: - Variables
+    var indexPath: IndexPath?
     
     // MARK: - UIView
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
@@ -29,7 +34,22 @@ class ItemTableViewCell: UITableViewCell {
     }
     
     // MARK: - UITableViewCell
+    override var isUserInteractionEnabled: Bool {
+        didSet {
+            if isUserInteractionEnabled {
+                titleLabel.textColor = UIConstants.Colors.primary
+                costLabel.textColor = UIConstants.Colors.primary
+                backgroundImageView.image = ItemTableViewCell.unselectedImage
+            } else {
+                titleLabel.textColor = UIConstants.Colors.secondary
+                costLabel.textColor = UIConstants.Colors.secondary
+                backgroundImageView.image = ItemTableViewCell.disabledImage
+            }
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
+        guard isUserInteractionEnabled else { return }
         if selected {
             titleLabel.textColor = UIConstants.Colors.white
             costLabel.textColor = UIConstants.Colors.white
@@ -42,6 +62,7 @@ class ItemTableViewCell: UITableViewCell {
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        guard isUserInteractionEnabled else { return }
         if highlighted {
             titleLabel.textColor = UIConstants.Colors.white
             costLabel.textColor = UIConstants.Colors.white

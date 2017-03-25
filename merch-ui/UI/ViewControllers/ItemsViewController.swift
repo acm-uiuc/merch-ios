@@ -17,12 +17,23 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
+    
     // MARK: - Variables
-    let updateItems = APIRequest.getItems(success: { (json) in
-        ItemsDataSource.shared.clear()
-        ItemsDataSource.shared.populate(models: json)
-    }) { (error) in
-        print(error)
+    var autoLogoutTimer: Timer?
+    let timeUntilAutoLogoutWarningAppears = 10
+    let timeUntilAutoLogoutOccursAfterWarning = 500
+    var timeSinceLastUserInteraction = 0 {
+        didSet {
+            switch timeSinceLastUserInteraction {
+            case 0..<timeUntilAutoLogoutWarningAppears:
+                timerLabel.text = "Welcome"
+            case timeUntilAutoLogoutWarningAppears...timeUntilAutoLogoutWarningAppears + timeUntilAutoLogoutOccursAfterWarning:
+                timerLabel.text = "Thank you, logging out in \(timeUntilAutoLogoutWarningAppears + timeUntilAutoLogoutOccursAfterWarning - timeSinceLastUserInteraction) sec."
+            default:
+                logout()
+            }
+        }
     }
     
     // MARK: - UIViewController
@@ -30,14 +41,29 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         tableView.dataSource = ItemsDataSource.shared
         tableView.delegate = self
+        
+        (view as? UIUserInteractionCallBackView)?.callback = { [weak self] in
+            self?.resetTimer()
+        }
+        
+        refreshControl.tintColor = UIConstants.Colors.secondary
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
+
+        autoLogoutTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDidTick(_:)), userInfo: nil, repeats: true)
+        
+        tableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let user = UserModel.shared {
-            APIManager.performRequest(request: updateItems, withAuthorization: user)
-        }
+        refresh(nil)
+        
+        nameLabel.text = UserModel.shared?.netID
+        balanceLabel.text = "ℂ\(UserModel.shared?.balance ?? 0)"
+        
+        timeSinceLastUserInteraction = 0
+        autoLogoutTimer?.fire()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +79,20 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        autoLogoutTimer?.invalidate()
+        super.viewWillDisappear(animated)
+    }
+    
+    // MARK: - Auto Logout
+    func resetTimer() {
+        timeSinceLastUserInteraction = 0
+    }
+    
+    func timerDidTick(_ sender: Any) {
+        timeSinceLastUserInteraction += 1
+    }
+    
     // MARK: - Actions
     @IBAction func logout() {
         dismiss(animated: true, completion: nil)
@@ -65,5 +105,32 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    // MARK: - Refresh Items
+    func refresh(_ sender: Any?) {
+        (sender as? UIRefreshControl)?.beginRefreshing()
+        
+        ItemsDataSource.shared.clear()
+        tableView.reloadData()
+
+        if let user = UserModel.shared {
+            APIRequest.getItems(success: { (json) in
+                DispatchQueue.main.async {
+                    if let models = json as? [[String: Any]] {
+                        ItemsDataSource.shared.populate(models: models)
+                    }
+                    self.tableView.reloadData()
+                    (sender as? UIRefreshControl)?.endRefreshing()
+
+                }
+            }) { (error) in
+                print(error)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    (sender as? UIRefreshControl)?.endRefreshing()
+                }
+            }.perform(withAuthorization: user)
+        }
     }
 }

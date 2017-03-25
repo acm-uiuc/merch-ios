@@ -18,7 +18,7 @@ class ItemModel {
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
-            let price = json["id"] as? Int,
+            let price = json["price"] as? Int,
             let name = json["name"] as? String,
             let imageURL = json["image"] as? String,
             let quantity = json["quantity"] as? Int else { return nil }

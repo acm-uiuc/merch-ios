@@ -8,44 +8,8 @@
 
 import Foundation
 
-public typealias SuccessBlock = (_ json: [String: Any]) -> Void
-public typealias ErrorBlock = (_ error: String) -> Void
-
-class APIManager {
-    static func performRequest(request: APIRequest, withAuthorization authorization: UserModel?) {
-        let urlRequest = request.urlRequest(withAuthorization: authorization)
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                request.error?(error.localizedDescription)
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse, let data = data {
-                if response.statusCode != 200 {
-                    request.error?(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))
-                    return
-                }
-                
-                if let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any] {
-                    if let error = json["error"] as? String {
-                        request.error?(error)
-                        return
-                    }
-                
-                    request.success?(json)
-                    return
-                }
-                
-                request.error?("Internal error; unable parse returned data.")
-                return
-            }
-            
-            assertionFailure("Both error and response should not be nil")
-        }
-        task.resume()
-    }
-}
+public typealias APISuccessBlock = (_ json: Any) -> Void
+public typealias APIErrorBlock = (_ error: String) -> Void
 
 struct APIRequest {
     enum RequestType: String {
@@ -60,8 +24,8 @@ struct APIRequest {
     var endpoint = ""
     var queryParams = [String: String]()
     
-    var success: SuccessBlock?
-    var error: ErrorBlock?
+    var success: APISuccessBlock?
+    var error: APIErrorBlock?
     
     var requestType = RequestType.GET
     
@@ -94,7 +58,7 @@ struct APIRequest {
     }
     
     // MARK: - Endpoints
-    private init(endpoint: String, queryParams: [String: String], success: SuccessBlock?, error: ErrorBlock?, requestType: APIRequest.RequestType) {
+    private init(endpoint: String, queryParams: [String: String], success: APISuccessBlock?, error: APIErrorBlock?, requestType: APIRequest.RequestType) {
         self.endpoint = endpoint
         self.queryParams = queryParams
         self.success = success
@@ -102,12 +66,51 @@ struct APIRequest {
         self.requestType = requestType
     }
     
-    static func getUser(passcode: String, success: SuccessBlock?, error: ErrorBlock?) -> APIRequest {
+    static func getUser(passcode: String, success: APISuccessBlock?, error: APIErrorBlock?) -> APIRequest {
         return APIRequest(endpoint: "/users/pins/\(passcode)", queryParams: [:], success: success, error: error, requestType: .GET)
     }
     
-    static func getItems(success: SuccessBlock?, error: ErrorBlock?) -> APIRequest {
+    static func getItems(success: APISuccessBlock?, error: APIErrorBlock?) -> APIRequest {
         return APIRequest(endpoint: "/items", queryParams: [:], success: success, error: error, requestType: .GET)
     }
     
+    // MARK: - Perform Request
+    func perform(withAuthorization authorization: UserModel?) {
+        let request = urlRequest(withAuthorization: authorization)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                self.error?(error.localizedDescription)
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse, let data = data {
+                if response.statusCode != 200 {
+                    self.error?(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))
+                    return
+                }
+                
+                if let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any] {
+                    if let error = json["error"] as? String {
+                        self.error?(error)
+                        return
+                    }
+                    
+                    if let data = json["data"] {
+                        self.success?(data)
+                        return
+                        
+                    }
+                }
+            }
+            
+            self.error?("Internal error; unable parse returned data.")
+            return
+        }
+        task.resume()
+    }
 }
+
+
+
+
