@@ -8,18 +8,19 @@
 
 import UIKit
 
-class ItemsViewController: UIViewController, UITableViewDelegate {
+class ItemsViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    let refreshControl = UIRefreshControl()
+    @IBOutlet weak var containerView: UIView!
     
     // MARK: - Variables
+    var selectedItem: ItemModel?
+    
+    // MARK: Auto Logout
     var autoLogoutTimer: Timer?
     let timeUntilAutoLogoutWarningAppears = 10
     let timeUntilAutoLogoutOccursAfterWarning = 500
@@ -36,31 +37,34 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    // MARK: Children View Controllers
+    var itemsListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemsListViewController")
+    var itemDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemDetailViewController")
+    
+    var currentlyDisplayedViewController: UIViewController?
+    
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = ItemsDataSource.shared
-        tableView.delegate = self
         
         (view as? UIUserInteractionCallBackView)?.callback = { [weak self] in
             self?.resetTimer()
         }
         
-        refreshControl.tintColor = UIConstants.Colors.secondary
-        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
-
         autoLogoutTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerDidTick(_:)), userInfo: nil, repeats: true)
         
-        tableView.refreshControl = refreshControl
+        addChildViewController(itemsListViewController)
+        itemsListViewController.willMove(toParentViewController: self)
+        containerView.addSubview(itemsListViewController.view)
+        constrain(contentView: itemsListViewController.view)
+        itemsListViewController.didMove(toParentViewController: self)
+        currentlyDisplayedViewController = itemsListViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        refresh(nil)
-        
-        nameLabel.text = UserModel.shared?.netID
-        balanceLabel.text = "ℂ\(UserModel.shared?.balance ?? 0)"
+        updateHeader()
         
         timeSinceLastUserInteraction = 0
         autoLogoutTimer?.fire()
@@ -71,9 +75,9 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
         
         if UserModel.shared == nil {
             let alert = UIAlertController(title: "Internal Error", message: "Unable to load user", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            let okAction = UIAlertAction(title: "Ok", style: .default) { (_) in
                 self.logout()
-            })
+            }
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
         }
@@ -82,6 +86,17 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         autoLogoutTimer?.invalidate()
         super.viewWillDisappear(animated)
+    }
+    
+    // MARK: - UI
+    func updateHeader() {
+        nameLabel.text = UserModel.shared?.netID
+        
+        if let selectedItem = selectedItem {
+            balanceLabel.text = "ℂ\(UserModel.shared?.balance ?? 0) - \(selectedItem.price)"
+        } else {
+            balanceLabel.text = "ℂ\(UserModel.shared?.balance ?? 0)"
+        }
     }
     
     // MARK: - Auto Logout
@@ -95,42 +110,77 @@ class ItemsViewController: UIViewController, UITableViewDelegate {
     
     // MARK: - Actions
     @IBAction func logout() {
+        transition(from: itemDetailViewController, to: itemsListViewController)
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - UITableViewDelegate
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
-    // MARK: - Refresh Items
-    func refresh(_ sender: Any?) {
-        (sender as? UIRefreshControl)?.beginRefreshing()
+    // MARK: - Container View Controller
+    func transition(from fromViewController: UIViewController, to toViewController: UIViewController) {
+        guard fromViewController != toViewController, currentlyDisplayedViewController == fromViewController else { return }
         
-        ItemsDataSource.shared.clear()
-        tableView.reloadData()
+        addChildViewController(toViewController)
+        
+        fromViewController.willMove(toParentViewController: nil)
+        toViewController.willMove(toParentViewController: self)
+        
+        containerView.addSubview(toViewController.view)
+        constrain(contentView: toViewController.view)
+        containerView.layoutIfNeeded()
 
-        if let user = UserModel.shared {
-            APIRequest.getItems(success: { (json) in
-                DispatchQueue.main.async {
-                    if let models = json as? [[String: Any]] {
-                        ItemsDataSource.shared.populate(models: models)
-                    }
-                    self.tableView.reloadData()
-                    (sender as? UIRefreshControl)?.endRefreshing()
-
-                }
-            }) { (error) in
-                print(error)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    (sender as? UIRefreshControl)?.endRefreshing()
-                }
-            }.perform(withAuthorization: user)
+        fromViewController.view.alpha = 1
+        toViewController.view.alpha = 0
+        
+        UIView.animate(withDuration: 0.25, animations: { 
+            fromViewController.view.alpha = 0
+            toViewController.view.alpha = 1
+        }) { (_) in
+            fromViewController.view.removeFromSuperview()
+            fromViewController.removeFromParentViewController()
+            toViewController.didMove(toParentViewController: self)
+            
+            self.constrain(contentView: toViewController.view)
+            self.currentlyDisplayedViewController = toViewController
         }
     }
+    
+    // MARK: - Child View Controller Actions
+    func constrain(contentView: UIView) {
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive             = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive       = true
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive     = true
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive   = true
+    }
+    
+    func didSelect(item: ItemModel) {
+        selectedItem = item
+        (itemDetailViewController as? ItemDetailViewController)?.item = item
+        transition(from: itemsListViewController, to: itemDetailViewController)
+        updateHeader()
+    }
+    
+    func purchasedItem() {
+        returnToList()
+    }
+    
+    func purchaseItemFailed(withError error: String) {
+        let alert = UIAlertController(title: "Unable to Purchase", message: error, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+
+        returnToList()
+    }
+    
+    func cancelledPurchase() {
+        returnToList()
+    }
+    
+    private func returnToList() {
+        selectedItem = nil
+        transition(from: itemDetailViewController, to: itemsListViewController)
+        updateHeader()
+    }
+
 }

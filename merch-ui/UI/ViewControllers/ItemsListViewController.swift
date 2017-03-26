@@ -13,10 +13,9 @@ class ItemsListViewController: UIViewController, UITableViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    let refreshControl = UIRefreshControl()
-    
     // MARK: - Variables
-    
+    let refreshControl = UIRefreshControl()
+
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +42,8 @@ class ItemsListViewController: UIViewController, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        (parent as? ItemsViewController)?.didSelect(item: ItemsDataSource.shared.items[indexPath.row])
     }
     
     // MARK: - Refresh Items

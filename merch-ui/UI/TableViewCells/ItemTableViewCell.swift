@@ -11,10 +11,9 @@ import UIKit
 class ItemTableViewCell: UITableViewCell {
     static let unselectedImage  = #imageLiteral(resourceName: "keypad_button_unselected")
     static let selectedImage    = #imageLiteral(resourceName: "keypad_button_selected")
-    static let highlightedImage = #imageLiteral(resourceName: "keypad_button_highlighted")
     static let disabledImage    = #imageLiteral(resourceName: "keypad_button_disabled")
     
-    static let defaultIconImage = #imageLiteral(resourceName: "keypad_delete_selected")
+    static let defaultIconImage = #imageLiteral(resourceName: "default_item")
     
     // MARK: - Outlets
     @IBOutlet weak var iconImageView: UIImageView!
@@ -66,7 +65,7 @@ class ItemTableViewCell: UITableViewCell {
         if highlighted {
             titleLabel.textColor = UIConstants.Colors.white
             costLabel.textColor = UIConstants.Colors.white
-            backgroundImageView.image = ItemTableViewCell.highlightedImage
+            backgroundImageView.image = ItemTableViewCell.selectedImage
         } else {
             titleLabel.textColor = UIConstants.Colors.primary
             costLabel.textColor = UIConstants.Colors.primary
