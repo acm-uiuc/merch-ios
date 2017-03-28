@@ -8,4 +8,4 @@
 
 import Foundation
 
-public let API_CLIENT_KEY = "ozNUSW-81vT4IjXYciuqruDsHJlAndViU_SYo8RDx0s="
+public let API_CLIENT_KEY = "SECRET KEY"
