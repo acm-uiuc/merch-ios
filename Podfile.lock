@@ -1,0 +1,12 @@
+PODS:
+  - GrootSwift (0.3.0)
+
+DEPENDENCIES:
+  - GrootSwift (~> 0.3.0)
+
+SPEC CHECKSUMS:
+  GrootSwift: 7e9357ab1c4feb8050b6b1dbf2d95f6ebf45cf63
+
+PODFILE CHECKSUM: 97b5d7e1d78709aaa5302ea78661eb3be87e89d4
+
+COCOAPODS: 1.1.1

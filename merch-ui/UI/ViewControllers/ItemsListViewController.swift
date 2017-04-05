@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GrootSwift
 
 class ItemsListViewController: UIViewController, UITableViewDelegate {
     
@@ -54,7 +55,8 @@ class ItemsListViewController: UIViewController, UITableViewDelegate {
         tableView.reloadData()
         
         if let user = UserModel.shared {
-            APIRequest.getItems(success: { (json) in
+            
+            MerchService.getItems(success: { (json) in
                 DispatchQueue.main.async {
                     if let models = json as? [[String: Any]] {
                         ItemsDataSource.shared.populate(models: models)

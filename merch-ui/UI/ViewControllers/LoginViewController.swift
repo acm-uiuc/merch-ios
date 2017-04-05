@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GrootSwift
 
 class LoginViewController: UIViewController {
     
@@ -120,7 +121,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Login
     func attemptLogin() {
-        APIRequest.getUser(passcode: passcode, success: { (json) in
+        MerchService.getUser(passcode: passcode, success: { (json) in
             if let model = json as? [String: Any] {
                 UserModel.load(json: model)
             }

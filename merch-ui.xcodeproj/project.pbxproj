@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43CDF9211595865B320BB6BA /* Pods_merch_ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8342888BDF138D3C989E8B /* Pods_merch_ui.framework */; };
 		9536B8D51E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D41E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift */; };
 		9536B8D81E86FF1B00FECCDE /* ImageDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D71E86FF1B00FECCDE /* ImageDownloadController.swift */; };
 		9536B8DA1E87059400FECCDE /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D91E87059400FECCDE /* ItemsListViewController.swift */; };
@@ -16,8 +17,6 @@
 		95398D8E1E81DBC30056ABE9 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95398D8D1E81DBC30056ABE9 /* ItemsViewController.swift */; };
 		95398D921E81EAAE0056ABE9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95398D901E81EAAE0056ABE9 /* UserModel.swift */; };
 		95398D941E81EB7E0056ABE9 /* ItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95398D931E81EB7E0056ABE9 /* ItemsDataSource.swift */; };
-		95808C5D1E7F369400C3E61E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95808C5B1E7F369400C3E61E /* APIManager.swift */; };
-		95808C5E1E7F369400C3E61E /* APISecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95808C5C1E7F369400C3E61E /* APISecrets.swift */; };
 		959A36A61E81B22000B43CE8 /* blenderpro-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 959A36A41E81B22000B43CE8 /* blenderpro-bold-webfont.ttf */; };
 		959A36A71E81B22000B43CE8 /* blenderpro-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 959A36A51E81B22000B43CE8 /* blenderpro-medium-webfont.ttf */; };
 		959C7D2D1E71DB6D00BE8958 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */; };
@@ -43,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2049163457905202E383BDD0 /* Pods-merch-ui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.release.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.release.xcconfig"; sourceTree = "<group>"; };
+		20B99BCD0E512ADC6EB7C69E /* Pods-merch-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.debug.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.debug.xcconfig"; sourceTree = "<group>"; };
 		9536B8D41E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUserInteractionCallBackView.swift; sourceTree = "<group>"; };
 		9536B8D71E86FF1B00FECCDE /* ImageDownloadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadController.swift; sourceTree = "<group>"; };
 		9536B8D91E87059400FECCDE /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
@@ -52,8 +53,7 @@
 		95398D8D1E81DBC30056ABE9 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		95398D901E81EAAE0056ABE9 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		95398D931E81EB7E0056ABE9 /* ItemsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsDataSource.swift; sourceTree = "<group>"; };
-		95808C5B1E7F369400C3E61E /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		95808C5C1E7F369400C3E61E /* APISecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISecrets.swift; sourceTree = "<group>"; };
+		9551E25E1E8B2A03009A545A /* JSONTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSONTests.playground; sourceTree = "<group>"; };
 		959A36A41E81B22000B43CE8 /* blenderpro-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "blenderpro-bold-webfont.ttf"; sourceTree = "<group>"; };
 		959A36A51E81B22000B43CE8 /* blenderpro-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "blenderpro-medium-webfont.ttf"; sourceTree = "<group>"; };
 		959C7D291E71DB6D00BE8958 /* merch-ui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "merch-ui.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +65,7 @@
 		95A4DB101E809856000717FD /* MerchUIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchUIConstants.swift; sourceTree = "<group>"; };
 		95C66D341E81EF9E005152A9 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		95C66D361E81F678005152A9 /* ItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		AF8342888BDF138D3C989E8B /* Pods_merch_ui.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_merch_ui.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,12 +73,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CDF9211595865B320BB6BA /* Pods_merch_ui.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D3A76D7A6AB2DF6D61EC7D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF8342888BDF138D3C989E8B /* Pods_merch_ui.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50829ECF3698EA3A5C248570 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20B99BCD0E512ADC6EB7C69E /* Pods-merch-ui.debug.xcconfig */,
+				2049163457905202E383BDD0 /* Pods-merch-ui.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9536B8D31E86FC2C00FECCDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,15 +142,6 @@
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		95808C5A1E7F369400C3E61E /* API */ = {
-			isa = PBXGroup;
-			children = (
-				95808C5B1E7F369400C3E61E /* APIManager.swift */,
-				95808C5C1E7F369400C3E61E /* APISecrets.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		959A36A31E81B22000B43CE8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,8 @@
 			children = (
 				959C7D2B1E71DB6D00BE8958 /* merch-ui */,
 				959C7D2A1E71DB6D00BE8958 /* Products */,
+				50829ECF3698EA3A5C248570 /* Pods */,
+				4D3A76D7A6AB2DF6D61EC7D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,13 +172,13 @@
 		959C7D2B1E71DB6D00BE8958 /* merch-ui */ = {
 			isa = PBXGroup;
 			children = (
+				9551E25E1E8B2A03009A545A /* JSONTests.playground */,
 				959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */,
 				9536B8D61E86FF0600FECCDE /* Controllers */,
 				95398D8F1E81EAAE0056ABE9 /* Models */,
 				95398D911E81EAAE0056ABE9 /* DataSources */,
 				95A4DB061E809849000717FD /* UI */,
 				95A4DB091E809849000717FD /* Storyboards */,
-				95808C5A1E7F369400C3E61E /* API */,
 				959C7D331E71DB6D00BE8958 /* Assets.xcassets */,
 				959C7D381E71DB6D00BE8958 /* Info.plist */,
 			);
@@ -209,10 +221,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 959C7D3B1E71DB6D00BE8958 /* Build configuration list for PBXNativeTarget "merch-ui" */;
 			buildPhases = (
+				AFCA914186228A20CBFE1E1E /* [CP] Check Pods Manifest.lock */,
 				959C7D251E71DB6D00BE8958 /* Sources */,
 				959C7D261E71DB6D00BE8958 /* Frameworks */,
 				959C7D271E71DB6D00BE8958 /* Resources */,
 				95C66D4B1E8211EA005152A9 /* Embed Frameworks */,
+				B999FFF186F3A31CFEC98B26 /* [CP] Embed Pods Frameworks */,
+				1EBBADC2F708CD79B048E85A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +288,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1EBBADC2F708CD79B048E85A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFCA914186228A20CBFE1E1E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B999FFF186F3A31CFEC98B26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		959C7D251E71DB6D00BE8958 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -283,8 +346,6 @@
 				95C66D351E81EF9E005152A9 /* ItemTableViewCell.swift in Sources */,
 				9536B8D81E86FF1B00FECCDE /* ImageDownloadController.swift in Sources */,
 				95398D921E81EAAE0056ABE9 /* UserModel.swift in Sources */,
-				95808C5D1E7F369400C3E61E /* APIManager.swift in Sources */,
-				95808C5E1E7F369400C3E61E /* APISecrets.swift in Sources */,
 				95A4DB111E809856000717FD /* MerchUIConstants.swift in Sources */,
 				9536B8DC1E872BAF00FECCDE /* ItemDetailViewController.swift in Sources */,
 				95398D941E81EB7E0056ABE9 /* ItemsDataSource.swift in Sources */,
@@ -394,6 +455,7 @@
 		};
 		959C7D3C1E71DB6D00BE8958 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20B99BCD0E512ADC6EB7C69E /* Pods-merch-ui.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8VNQTQM2L6;
@@ -409,6 +471,7 @@
 		};
 		959C7D3D1E71DB6D00BE8958 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2049163457905202E383BDD0 /* Pods-merch-ui.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8VNQTQM2L6;

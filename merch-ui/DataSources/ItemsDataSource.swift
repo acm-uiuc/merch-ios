@@ -38,7 +38,7 @@ class ItemsDataSource: NSObject, UITableViewDataSource {
             cell.indexPath = indexPath
             cell.costLabel.text = "ℂ\(item.price)"
             cell.titleLabel.text = item.name
-            cell.isUserInteractionEnabled = item.quantity > 0
+            cell.isUserInteractionEnabled = item.total_stock > 0
             
             if let image = ImageDownloadController.shared.images.object(forKey: item.imageURL as NSString) {
                 cell.iconImageView.image = image

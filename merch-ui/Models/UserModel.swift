@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import GrootSwift
 
-class UserModel {
+class UserModel: GrootAuthorization {
     static var shared: UserModel?
 
     let id: Int
-    let netID: String
+    private(set) var netID: String
+    private(set) var token: String
     let pin: Int
     var balance: Int
 
@@ -21,6 +23,8 @@ class UserModel {
         self.netID = netID
         self.pin = pin
         self.balance = balance
+        
+        self.token = ""
     }
     
     static func load(json: [String: Any]) {

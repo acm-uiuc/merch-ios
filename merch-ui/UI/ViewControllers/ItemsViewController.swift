@@ -23,13 +23,14 @@ class ItemsViewController: UIViewController {
     // MARK: Auto Logout
     var autoLogoutTimer: Timer?
     let timeUntilAutoLogoutWarningAppears = 10
-    let timeUntilAutoLogoutOccursAfterWarning = 500
+    let timeUntilAutoLogoutOccursAfterWarning = 5
     var timeSinceLastUserInteraction = 0 {
         didSet {
             switch timeSinceLastUserInteraction {
             case 0..<timeUntilAutoLogoutWarningAppears:
                 timerLabel.text = "Welcome"
             case timeUntilAutoLogoutWarningAppears...timeUntilAutoLogoutWarningAppears + timeUntilAutoLogoutOccursAfterWarning:
+                // FIX ME: change to attributed text with the time remaining in red
                 timerLabel.text = "Thank you, logging out in \(timeUntilAutoLogoutWarningAppears + timeUntilAutoLogoutOccursAfterWarning - timeSinceLastUserInteraction) sec."
             default:
                 logout()

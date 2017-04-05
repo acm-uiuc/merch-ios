@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,8 +30,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJu-gj-0qg">
-                                <rect key="frame" x="384" y="70" width="0.0" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJu-gj-0qg">
+                                <rect key="frame" x="36" y="70" width="696" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="FAI-cl-ACz"/>
                                 </constraints>
@@ -398,7 +399,9 @@
                             <constraint firstItem="SE4-Wg-rIb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CcX-lI-dMd"/>
                             <constraint firstItem="hRd-sA-UMP" firstAttribute="top" secondItem="SE4-Wg-rIb" secondAttribute="bottom" constant="53" id="Chv-i1-i3P"/>
                             <constraint firstItem="NJu-gj-0qg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I65-wT-dG8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NJu-gj-0qg" secondAttribute="trailing" constant="16" id="I74-vq-wjb"/>
                             <constraint firstItem="NJu-gj-0qg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="70" id="LaN-dP-xBf"/>
+                            <constraint firstItem="NJu-gj-0qg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="16" id="T8C-Yb-QGE"/>
                             <constraint firstItem="cf1-mE-waj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VTn-92-qrB"/>
                             <constraint firstItem="cf1-mE-waj" firstAttribute="top" secondItem="cph-IG-yxt" secondAttribute="bottom" constant="196" id="bOj-B8-5SZ"/>
                             <constraint firstItem="hQf-Lz-ZfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d5n-IB-arL"/>
@@ -566,6 +569,10 @@
         <scene sceneID="Osd-fY-bpI">
             <objects>
                 <viewController storyboardIdentifier="ItemsListViewController" id="Ph1-EH-3c9" customClass="ItemsListViewController" customModule="merch_ui" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b8s-0M-UUc"/>
+                        <viewControllerLayoutGuide type="bottom" id="EFd-XE-Avv"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TvP-nh-m2K">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

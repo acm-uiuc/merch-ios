@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GrootSwift
 
 class ItemDetailViewController: UIViewController {
     static let defaultItemImage = #imageLiteral(resourceName: "default_item_large")
@@ -40,7 +41,25 @@ class ItemDetailViewController: UIViewController {
     
     
     @IBAction func purchase(_ sender: Any?) {
-        (parent as? ItemsViewController)?.purchaseItemFailed(withError: "Purchasing Items has not been implemented yet.")
+        guard let item = item, let user = UserModel.shared else {
+            (parent as? ItemsViewController)?.purchaseItemFailed(withError: "Purchasing Items has not been implemented yet.")
+            return
+        }
+        
+        MerchService.purchase(items:
+            ["items": [item.id],
+             "pin": "\(user.pin)"], success: { (json) in
+                print(json)
+                // TODO: - Parse reponse json and update items/usermodel
+                
+                DispatchQueue.main.async {
+                    (self.parent as? ItemsViewController)?.purchasedItem()
+                }
+        }) { (error) in
+            DispatchQueue.main.async {
+                (self.parent as? ItemsViewController)?.purchaseItemFailed(withError: error)
+            }
+        }.perform(withAuthorization: UserModel.shared)
     }
     
     @IBAction func cancelPurchase(_ sender: Any?) {
