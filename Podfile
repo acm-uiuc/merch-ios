@@ -6,5 +6,5 @@ target 'merch-ui' do
   use_frameworks!
 
   # Pods for merch-ui
-  pod 'GrootSwift', '~> 0.3.0'
+  pod 'GrootSwift', '~> 0.3.1'
 end

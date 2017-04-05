@@ -122,7 +122,7 @@ class LoginViewController: UIViewController {
     // MARK: - Login
     func attemptLogin() {
         MerchService.getUser(passcode: passcode, success: { (json) in
-            if let model = json as? [String: Any] {
+            if let model = json["data"] as? [String: Any] {
                 UserModel.load(json: model)
             }
             

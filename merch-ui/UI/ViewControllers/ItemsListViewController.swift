@@ -58,7 +58,7 @@ class ItemsListViewController: UIViewController, UITableViewDelegate {
             
             MerchService.getItems(success: { (json) in
                 DispatchQueue.main.async {
-                    if let models = json as? [[String: Any]] {
+                    if let models = json["data"] as? [[String: Any]] {
                         ItemsDataSource.shared.populate(models: models)
                     }
                     self.tableView.reloadData()

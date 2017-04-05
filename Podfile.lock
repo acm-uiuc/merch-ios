@@ -1,12 +1,12 @@
 PODS:
-  - GrootSwift (0.3.0)
+  - GrootSwift (0.3.1)
 
 DEPENDENCIES:
-  - GrootSwift (~> 0.3.0)
+  - GrootSwift (~> 0.3.1)
 
 SPEC CHECKSUMS:
-  GrootSwift: 7e9357ab1c4feb8050b6b1dbf2d95f6ebf45cf63
+  GrootSwift: d367e5a5d465566a99e586d4982a09568d24b508
 
-PODFILE CHECKSUM: 97b5d7e1d78709aaa5302ea78661eb3be87e89d4
+PODFILE CHECKSUM: 22dba085fc97f758a98bfa1abdbaa5fe4bbe726c
 
 COCOAPODS: 1.1.1
