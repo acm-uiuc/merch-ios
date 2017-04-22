@@ -7,9 +7,26 @@
 //
 
 import Foundation
-import GrootSwift
+import APIManager
 
-class UserModel: GrootAuthorization {
+class UserModel: APIAuthorization {
+    func embedInto<Service: APIService>(request: APIRequest<Service>) -> (HTTPParameters?, JSON?) {
+        if request.method == .GET {
+            var params = request.params ?? [:]
+            params["netID"] = netID
+            params["token"] = token
+            return (params, request.body)
+        } else {
+            var body = request.body ?? [:]
+            
+            body["Authorization"] = [
+                "netID" : netID,
+                "token" : token
+            ]
+            return (request.params, body)
+        }
+    }
+
     static var shared: UserModel?
 
     let id: Int

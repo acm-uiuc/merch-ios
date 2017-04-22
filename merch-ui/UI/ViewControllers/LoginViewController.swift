@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GrootSwift
+import APIManager
 
 class LoginViewController: UIViewController {
     
@@ -121,8 +121,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - Login
     func attemptLogin() {
-        MerchService.getUser(passcode: passcode, success: { (json) in
-            if let model = json["data"] as? [String: Any] {
+        GrootMerchService.getUser(passcode: passcode)
+        .onSuccess { (json) in
+            if let model = json["data"] as? JSON {
                 UserModel.load(json: model)
             }
             
@@ -135,12 +136,13 @@ class LoginViewController: UIViewController {
                     self.loginFailed(error: "Internal error; unable parse returned data.")
                 }
             }
-            
-        }) { (error) in
+        }
+        .onFailure { (error) in
             DispatchQueue.main.async {
                 self.loginFailed(error: error)
             }
-        }.perform(withAuthorization: nil)
+        }
+        .perform(withAuthorization: nil)
     }
     
     func loginSucceeded() {

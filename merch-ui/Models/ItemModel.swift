@@ -28,8 +28,6 @@ class ItemModel {
         self.name = name
         self.imageURL = imageURL
         self.total_stock = total_stock
-        
     }
-    
     
 }

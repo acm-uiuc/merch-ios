@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GrootSwift
+import APIManager
 
 class ItemDetailViewController: UIViewController {
     static let defaultItemImage = #imageLiteral(resourceName: "default_item_large")
@@ -46,20 +46,26 @@ class ItemDetailViewController: UIViewController {
             return
         }
         
-        MerchService.purchase(items:
-            ["items": [item.id],
-             "pin": "\(user.pin)"], success: { (json) in
-                print(json)
-                // TODO: - Parse reponse json and update items/usermodel
-                
-                DispatchQueue.main.async {
-                    (self.parent as? ItemsViewController)?.purchasedItem()
-                }
-        }) { (error) in
+        let items: JSON = [
+            "items": [item.id],
+            "pin": "\(user.pin)"
+        ]
+        
+        GrootMerchService.purchase(items: items)
+        .onSuccess { (json) in
+            print(json)
+            
+            // TODO: - Parse reponse json and update items/usermodel
+            DispatchQueue.main.async {
+                (self.parent as? ItemsViewController)?.purchasedItem()
+            }
+        }
+        .onFailure { (error) in
             DispatchQueue.main.async {
                 (self.parent as? ItemsViewController)?.purchaseItemFailed(withError: error)
             }
-        }.perform(withAuthorization: UserModel.shared)
+        }
+        .perform(withAuthorization: UserModel.shared)
     }
     
     @IBAction func cancelPurchase(_ sender: Any?) {
