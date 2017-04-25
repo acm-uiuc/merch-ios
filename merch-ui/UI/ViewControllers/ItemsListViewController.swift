@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import APIManager
+import GrootSwift
 
 class ItemsListViewController: UIViewController, UITableViewDelegate {
     

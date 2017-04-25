@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43CDF9211595865B320BB6BA /* Pods_merch_ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8342888BDF138D3C989E8B /* Pods_merch_ui.framework */; };
-		9530C1C91EABFA5F00507DB4 /* GrootMerchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C1C81EABFA5F00507DB4 /* GrootMerchService.swift */; };
 		9530C1CB1EABFD0200507DB4 /* GrootSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C1CA1EABFD0200507DB4 /* GrootSecrets.swift */; };
-		9530C1CD1EAC01BC00507DB4 /* GrootService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C1CC1EAC01BC00507DB4 /* GrootService.swift */; };
 		9536B8D51E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D41E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift */; };
 		9536B8D81E86FF1B00FECCDE /* ImageDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D71E86FF1B00FECCDE /* ImageDownloadController.swift */; };
 		9536B8DA1E87059400FECCDE /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536B8D91E87059400FECCDE /* ItemsListViewController.swift */; };
@@ -48,9 +46,7 @@
 /* Begin PBXFileReference section */
 		2049163457905202E383BDD0 /* Pods-merch-ui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.release.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.release.xcconfig"; sourceTree = "<group>"; };
 		20B99BCD0E512ADC6EB7C69E /* Pods-merch-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-merch-ui.debug.xcconfig"; path = "Pods/Target Support Files/Pods-merch-ui/Pods-merch-ui.debug.xcconfig"; sourceTree = "<group>"; };
-		9530C1C81EABFA5F00507DB4 /* GrootMerchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrootMerchService.swift; sourceTree = "<group>"; };
 		9530C1CA1EABFD0200507DB4 /* GrootSecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrootSecrets.swift; sourceTree = "<group>"; };
-		9530C1CC1EAC01BC00507DB4 /* GrootService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrootService.swift; sourceTree = "<group>"; };
 		9536B8D41E86FC2C00FECCDE /* UIUserInteractionCallBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUserInteractionCallBackView.swift; sourceTree = "<group>"; };
 		9536B8D71E86FF1B00FECCDE /* ImageDownloadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadController.swift; sourceTree = "<group>"; };
 		9536B8D91E87059400FECCDE /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
@@ -180,8 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				9530C1CA1EABFD0200507DB4 /* GrootSecrets.swift */,
-				9530C1CC1EAC01BC00507DB4 /* GrootService.swift */,
-				9530C1C81EABFA5F00507DB4 /* GrootMerchService.swift */,
 				9551E25E1E8B2A03009A545A /* JSONTests.playground */,
 				959C7D2C1E71DB6D00BE8958 /* AppDelegate.swift */,
 				9536B8D61E86FF0600FECCDE /* Controllers */,
@@ -363,11 +357,9 @@
 			files = (
 				95C66D371E81F678005152A9 /* ItemModel.swift in Sources */,
 				9530C1CB1EABFD0200507DB4 /* GrootSecrets.swift in Sources */,
-				9530C1C91EABFA5F00507DB4 /* GrootMerchService.swift in Sources */,
 				95398D8C1E81DBBA0056ABE9 /* LoginViewController.swift in Sources */,
 				95C66D351E81EF9E005152A9 /* ItemTableViewCell.swift in Sources */,
 				95F1529B1E99611600D8B74A /* VendInProgressViewController.swift in Sources */,
-				9530C1CD1EAC01BC00507DB4 /* GrootService.swift in Sources */,
 				9536B8D81E86FF1B00FECCDE /* ImageDownloadController.swift in Sources */,
 				95398D921E81EAAE0056ABE9 /* UserModel.swift in Sources */,
 				95A4DB111E809856000717FD /* MerchUIConstants.swift in Sources */,

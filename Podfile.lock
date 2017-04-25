@@ -1,12 +1,15 @@
 PODS:
-  - APIManager (0.0.1)
+  - APIManager (0.0.3)
+  - GrootSwift (0.6.0):
+    - APIManager
 
 DEPENDENCIES:
-  - APIManager (~> 0.0.1)
+  - GrootSwift (~> 0.6.0)
 
 SPEC CHECKSUMS:
-  APIManager: 14d8d115a270063844c5f95920fa3a7ebf2f5856
+  APIManager: 84e21bf87aee3990c9856efe86630e7dc269d987
+  GrootSwift: 053d8203edb8a07696d3ea9d70e7507b30bf6708
 
-PODFILE CHECKSUM: 5f4936bd1941ec1d0212b2f6efc279ccbb74958a
+PODFILE CHECKSUM: 1b4528b43b798f73fe738913ad48d139d28d47e3
 
 COCOAPODS: 1.2.1
