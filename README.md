@@ -1,6 +1,6 @@
 # Merch Point of Sale iOS App
 
-[![Join the chat at https://gitter.im/acm-uiuc/merch-development](https://badges.gitter.im/acm-uiuc/merch-development.svg)](https://gitter.im/acm-uiuc/merch-development?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://acm-uiuc.slack.com/messages/C6XD34KTM](https://img.shields.io/badge/slack-merch-724D71.svg)](https://acm-uiuc.slack.com/messages/C6XD34KTM)
 
 ## Getting involved
 
